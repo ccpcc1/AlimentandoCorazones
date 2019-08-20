@@ -44,57 +44,7 @@
   <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
 
-        <script>
-          // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCHYDqXyZHsMa8HBupwUiFEkDJBd0HzRts",
-            authDomain: "alimentandocorazones-c4f2c.firebaseapp.com",
-            databaseURL: "https://alimentandocorazones-c4f2c.firebaseio.com",
-            projectId: "alimentandocorazones-c4f2c",
-            storageBucket: "alimentandocorazones-c4f2c.appspot.com",
-            messagingSenderId: "717936080130",
-            appId: "1:717936080130:web:9c6bef3ca09ea718"
-          };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        
-        const txtEmail=document.getElementById('txtEmail');
-        const txtPass=document.getElementById('txtPass');        
-        const btnLogin=document.getElementById('btnLogin');
-        const btnOut=document.getElementById('btnSalir');      
-        const btnRegistro=document.getElementById('btnRegistro');
-
-        btnLogin.addEventListener("click", e => {
-            const email= txtEmail.value;
-            const password=txtPass.value;
-            const auth=firebase.auth();
-
-            //sign in
-            const promise=auth.signInWithEmailAndPassword(email,password);
-            promise.catch( e => console.log(e.message));
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-          /*var db=firebase.database();
-          console.log(db);
-          //ref es una ref asi donde se esta apuntando
-          db.ref('metadata').set(
-          {
-            app:'alimentando Corazones',
-            ver:'0.0.1'
-          });*/
-
-        </script>
+  <script src="js/Registro.js"></script>
 
         <!--apartir de aqui se escriben script relacionados con firebase, despues del firebaseconfig-->
 
