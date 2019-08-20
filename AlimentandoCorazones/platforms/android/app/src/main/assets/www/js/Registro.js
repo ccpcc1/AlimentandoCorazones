@@ -12,8 +12,7 @@
           };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        var databaseService = firebase.database();
-        var referencia = databaseService.ref('Users');
+        
         const txtEmail=document.getElementById('txtEmail');
         const txtPass=document.getElementById('txtPass');        
         const btnLogin=document.getElementById('btnLogin');
@@ -36,20 +35,8 @@
             const auth=firebase.auth();
 
             //Registro
-            //Nota: Si se creó la cuenta nueva, el usuario accede automáticamente
-            const promise=auth.createUserWithEmailAndPassword(email,password).then(function(result) {
-              console.log(result);
-               referencia.push({
-                    correo: email,
-                    Empresa: "",
-                    Nit:"",
-                    tipoUsuario:1
-                });
-               console.log("paso");
-            }).catch(function(error) {
-              // An error happened.
-            });
-            //promise.catch( e => console.log(e.message));
+            const promise=auth.createUserWithEmailAndPassword(email,password);
+            promise.catch( e => console.log(e.message));
         });
 
         btnOut.addEventListener("click", e => {
@@ -62,10 +49,12 @@
             {
                 console.log(firebaseUser);
                 console.log("mostrar boton cerrar sesión");
-                /*referencia.set({
+                var databaseService = firebase.database();
+                var referencia = databaseService.ref('testRef');
+                referencia.set({
                     campoTest: 'valor del test',
                     ahora: new Date().getTime()
-                });*/
+                });
             }
             else
             {
@@ -73,27 +62,3 @@
             }
         })
 }());
-
-
-function ValidarTipoUsuario(num)
-{
-    var tipoUsu=Number(num)
-    switch(tipoUsu)
-    {
-        case 1://Empresa donadora
-            console.log("Empresa donadora");    
-            break;
-
-        case 2://Comedores comunitarios
-            console.log("Comedores comunitarios");       
-            break;
-
-        case 3://Admin ->por silas moscas
-            console.log("admin");
-            break;
-
-        default:
-            console.log("nos hackearon, activar contramedidas");
-            break
-    }
-}
