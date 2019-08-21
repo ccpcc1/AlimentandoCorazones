@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- Color theme for statusbar -->
     <meta name="theme-color" content="#2196f3">
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
     <!-- Your app title -->
     <title>Alimentando corazones</title>
     <!-- Path to Framework7 Library Bundle CSS -->
@@ -36,7 +37,7 @@
                         <div class="item-inner">
                           <div class="item-title item-label">Username</div>
                           <div class="item-input-wrap">
-                            <input type="text" name="username" placeholder="Username">
+                            <input id="txtEmail" type="text" name="username" placeholder="Username">
                             <span class="input-clear-button"></span>
                           </div>
                         </div>
@@ -45,7 +46,7 @@
                         <div class="item-inner">
                           <div class="item-title item-label">Password</div>
                           <div class="item-input-wrap">
-                            <input type="password" name="password" placeholder="Password">
+                            <input id="txtPass" type="password" name="password" placeholder="Password">
                             <span class="input-clear-button"></span>
                           </div>
                         </div>
@@ -55,10 +56,12 @@
                   <div class="list">
                     <ul>
                       <li>
-                        <a href="#" class="item-link list-button">Sign In</a>
+                        <a href="#" id="btnLogin" class="item-link list-button">Login</a>
+                        <a href="#" id="btnRegistro" class="item-link list-button">Register</a>
+                        <a href="#" id="btnSalir" class="item-link list-button">Exit</a>
                       </li>
                     </ul>
-                  <div class="block-footer">Some text with login information.</div>
+"block-footer">Some text with login information.</div>
                </div>
              </form>
            </div>
@@ -70,5 +73,9 @@
     <script type="text/javascript" src="js/framework7.bundle.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
+
+  <script src="js/Registro.js"></script>
   </body>
 </html>
