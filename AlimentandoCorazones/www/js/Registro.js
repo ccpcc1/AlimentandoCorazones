@@ -41,7 +41,7 @@
               console.log(result);
                referencia.push({
                     correo: email,
-                    Empresa: "",
+                    Empresa: "", 
                     Nit:"",
                     tipoUsuario:1
                 });
