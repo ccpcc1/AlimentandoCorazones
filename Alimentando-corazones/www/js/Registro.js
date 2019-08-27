@@ -15,7 +15,9 @@
         var databaseService = firebase.database();
         var referencia = databaseService.ref('Users');
         const txtEmail=document.getElementById('txtEmail');
-        const txtPass=document.getElementById('txtPass');        
+        const txtEmailRegister=document.getElementById('txtEmailRegister');
+        const txtPass=document.getElementById('txtPass');
+        const txtPassRegister=document.getElementById('txtPassRegister');                
         const btnLogin=document.getElementById('btnLogin');
         const btnOut=document.getElementById('btnSalir');      
         const btnRegistro=document.getElementById('btnRegistro');
@@ -26,13 +28,19 @@
             const auth=firebase.auth();
 
             //Logueo
-            const promise=auth.signInWithEmailAndPassword(email,password);
-            promise.catch( e => console.log(e.message));
+            const promise=auth.signInWithEmailAndPassword(email,password).then(function(result) {
+              console.log(result);
+               console.log("hasta aqui dio");
+               consultarUser(email);
+               console.log("paso");
+            }).catch(function(error) {
+              // An error happened.
+            });
         });
 
         btnRegistro.addEventListener("click", e => {
-            const email= txtEmail.value;
-            const password=txtPass.value;
+            const email= txtEmailRegister.value;
+            const password=txtPassRegister.value;
             const auth=firebase.auth();
 
             //Registro
@@ -45,6 +53,8 @@
                     Nit:"",
                     tipoUsuario:1
                 });
+               console.log("hasta aqui dio");
+               consultarUser(email);
                console.log("paso");
             }).catch(function(error) {
               // An error happened.
@@ -62,10 +72,7 @@
             {
                 console.log(firebaseUser);
                 console.log("mostrar boton cerrar sesión");
-                /*referencia.set({
-                    campoTest: 'valor del test',
-                    ahora: new Date().getTime()
-                });*/
+                
             }
             else
             {
@@ -73,6 +80,7 @@
             }
         })
 }());
+
 
 
 function ValidarTipoUsuario(num)
@@ -97,3 +105,22 @@ function ValidarTipoUsuario(num)
             break
     }
 }
+
+
+
+function consultarUser(correo)
+{
+    referencia.on("child_added", function(snapshot, prevChildKey) {   
+  var Users = snapshot.val();
+  var user="";
+    if(Users.correo===correo)
+    {
+        user=snapshot.val();
+        console.log(user);
+    }
+
+    ValidarTipoUsuario(user.tipoUsuario);
+  
+});
+}
+
