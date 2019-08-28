@@ -91,18 +91,22 @@ function ValidarTipoUsuario(num)
     switch(tipoUsu)
     {
         case 1://Empresa donadora
+            alert("Empresa donadora");
             console.log("Empresa donadora");    
             break;
 
         case 2://Comedores comunitarios
+            alert("Comedores comunitarios");
             console.log("Comedores comunitarios");       
             break;
 
         case 3://Admin ->por silas moscas
+            alert("admin");
             console.log("admin");
             break;
 
         default:
+            alert("nos hackearon, activar contramedidas");
             console.log("nos hackearon, activar contramedidas");
             break
     }
