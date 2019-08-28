@@ -39,9 +39,15 @@
         });
 
         btnRegistro.addEventListener("click", e => {
+
             const email= txtEmailRegister.value;
             const password=txtPassRegister.value;
+            let txtTipousuario=document.getElementById("txtTipousuario").value;
+            let txtNomEmpresa=document.getElementById("txtNomEmpresa").value;
             const auth=firebase.auth();
+            if(email!=="" && password>=6 && txtTipousuario>0 && txtNomEmpresa!=="")
+            {
+
 
             //Registro
             //Nota: Si se creó la cuenta nueva, el usuario accede automáticamente
@@ -49,17 +55,21 @@
               console.log(result);
                referencia.push({
                     correo: email,
-                    Empresa: "",
-                    Nit:"",
-                    tipoUsuario:1
+                    Empresa: txtNomEmpresa,
+                    tipoUsuario:txtTipousuario
                 });
-               console.log("hasta aqui dio");
+               alert("Registro exitoso");
                consultarUser(email);
-               console.log("paso");
+               
             }).catch(function(error) {
               // An error happened.
             });
             //promise.catch( e => console.log(e.message));
+            }
+            else
+            {
+                alert("por favor rellenar la totalidad de los campos para registrarse");
+            }
         });
 
         btnOut.addEventListener("click", e => {
