@@ -85,6 +85,8 @@
 
 function ValidarTipoUsuario(num)
 {
+    console.log("entro a la funcion");
+    
     var tipoUsu=Number(num)
     switch(tipoUsu)
     {
@@ -110,16 +112,23 @@ function ValidarTipoUsuario(num)
 
 function consultarUser(correo)
 {
+    console.log("entro a la funcion 1");
+    var databaseService = firebase.database();
+    var referencia = databaseService.ref('Users');
+    console.log("antes de la consulta");
     referencia.on("child_added", function(snapshot, prevChildKey) {   
-  var Users = snapshot.val();
-  var user="";
+    var Users = snapshot.val();
+    var user="";
     if(Users.correo===correo)
     {
         user=snapshot.val();
         console.log(user);
+        console.log("el tipo de usu es: "+user.tipoUsuario);
+        ValidarTipoUsuario(user.tipoUsuario);
+        return "";
     }
 
-    ValidarTipoUsuario(user.tipoUsuario);
+    
   
 });
 }
