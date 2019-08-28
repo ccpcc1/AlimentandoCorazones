@@ -15,41 +15,66 @@
         var databaseService = firebase.database();
         var referencia = databaseService.ref('Users');
         const txtEmail=document.getElementById('txtEmail');
-        const txtPass=document.getElementById('txtPass');        
+        const txtEmailRegister=document.getElementById('txtEmailRegister');
+        const txtPass=document.getElementById('txtPass');
+        const txtPassRegister=document.getElementById('txtPassRegister');                
         const btnLogin=document.getElementById('btnLogin');
         const btnOut=document.getElementById('btnSalir');      
         const btnRegistro=document.getElementById('btnRegistro');
 
         btnLogin.addEventListener("click", e => {
-            const email= txtEmail.value;
-            const password=txtPass.value;
+            let email= txtEmail.value;
+            let password=txtPass.value;
             const auth=firebase.auth();
 
             //Logueo
-            const promise=auth.signInWithEmailAndPassword(email,password);
-            promise.catch( e => console.log(e.message));
+            const promise=auth.signInWithEmailAndPassword(email,password).then(function(result)
+            {
+                console.log(result);
+                consultarUser(email);
+                limpiarCamposLogin()
+               
+            }).catch(function(error) 
+            {
+              alert("a ocurrido un error: "+error);
+            });
         });
 
         btnRegistro.addEventListener("click", e => {
-            const email= txtEmail.value;
-            const password=txtPass.value;
+
+            let email= txtEmailRegister.value;
+            let password=txtPassRegister.value;
+            let txtTipousuario=document.getElementById("txtTipousuario").value;
+            let txtNomEmpresa=document.getElementById("txtNomEmpresa").value;
             const auth=firebase.auth();
+            if(email!=="" && password>=6 && txtTipousuario>0 && txtNomEmpresa!=="")
+            {
+
 
             //Registro
             //Nota: Si se creó la cuenta nueva, el usuario accede automáticamente
-            const promise=auth.createUserWithEmailAndPassword(email,password).then(function(result) {
-              console.log(result);
-               referencia.push({
+            const promise=auth.createUserWithEmailAndPassword(email,password).then(function(result) 
+            {
+                console.log(result);
+                referencia.push({
                     correo: email,
-                    Empresa: "",
-                    Nit:"",
-                    tipoUsuario:1
+                    Empresa: txtNomEmpresa,
+                    tipoUsuario:txtTipousuario
                 });
-               console.log("paso");
+                alert("Registro exitoso");
+                limpiarCamposRegistro();
+                consultarUser(email);
+
+               
             }).catch(function(error) {
-              // An error happened.
+              alert("a ocurrido un error: "+error);
             });
             //promise.catch( e => console.log(e.message));
+            }
+            else
+            {
+                alert("por favor rellenar la totalidad de los campos para registrarse");
+            }
         });
 
         btnOut.addEventListener("click", e => {
@@ -62,10 +87,7 @@
             {
                 console.log(firebaseUser);
                 console.log("mostrar boton cerrar sesión");
-                /*referencia.set({
-                    campoTest: 'valor del test',
-                    ahora: new Date().getTime()
-                });*/
+                
             }
             else
             {
@@ -75,25 +97,71 @@
 }());
 
 
+
 function ValidarTipoUsuario(num)
 {
+    console.log("entro a la funcion");
+    
     var tipoUsu=Number(num)
     switch(tipoUsu)
     {
         case 1://Empresa donadora
+            alert("Empresa donadora");
             console.log("Empresa donadora");    
             break;
 
         case 2://Comedores comunitarios
+            alert("Comedores comunitarios");
             console.log("Comedores comunitarios");       
             break;
 
         case 3://Admin ->por silas moscas
+            alert("admin");
             console.log("admin");
             break;
 
         default:
+            alert("nos hackearon, activar contramedidas");
             console.log("nos hackearon, activar contramedidas");
             break
     }
 }
+
+
+
+function consultarUser(correo)
+{
+    console.log("entro a la funcion 1");
+    var databaseService = firebase.database();
+    var referencia = databaseService.ref('Users');
+    console.log("antes de la consulta");
+    referencia.on("child_added", function(snapshot, prevChildKey) {   
+    var Users = snapshot.val();
+    var user="";
+    if(Users.correo===correo)
+        {
+            user=snapshot.val();
+            console.log(user);
+            console.log("el tipo de usu es: "+user.tipoUsuario);
+            ValidarTipoUsuario(user.tipoUsuario);
+            return "";
+        }  
+  
+    });
+}
+
+function limpiarCamposRegistro()
+{
+    document.getElementById('txtEmailRegister').value="";
+    document.getElementById("txtPassRegister").value=""; 
+    document.getElementById("txtNomEmpresa").value="";
+
+}
+
+function limpiarCamposLogin()
+{
+    txtEmail=document.getElementById('txtEmail').value="";
+    txtPass=document.getElementById('txtPass').value="";
+}
+
+

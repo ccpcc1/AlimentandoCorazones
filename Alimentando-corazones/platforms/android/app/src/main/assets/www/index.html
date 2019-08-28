@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/framework7.bundle.min.css">
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/animate.css">
   </head>
   <body>
     <!-- App root element -->
@@ -28,9 +29,9 @@
    
         <!-- page-content has additional login-screen content -->
         <div class="page-content login-screen-content">
-                <div class="login-screen-title">Alimentando Corazones</div>
         <!-- Login form -->
-                <form>
+                <form id="login" >
+                <div class="login-screen-title">Alimentando Corazones</div>
                   <div class="list">
                     <ul>
                       <li class="item-content item-input">
@@ -57,11 +58,64 @@
                     <ul>
                       <li>
                         <a href="#" id="btnLogin" class="item-link list-button">Iniciar sesión</a>
-                        <a href="/registro/" id="btnRegistrarse" class="item-link list-button">Registrar</a>
+                        <a onclick="interfazRegistro()"  id="btnRegistrarse" class="item-link list-button">Registrar</a>
                       </li>
                     </ul>
+                  </div>
              </form>
-           </div>
+             <form class="list form-store-data ocultar " id="register">
+               <ul>
+                 <li>
+                   <div class="item-content item-input">
+                     <div class="item-inner">
+                       <div class="item-title item-label">Nombre</div>
+                       <div class="item-input-wrap">
+                         <input id="txtNomEmpresa" type="text" name="name" placeholder="Empresa/Comedor Comunitario">
+                       </div>
+                     </div>
+                   </div>
+                 </li>
+                 <li>
+                   <div class="item-content item-input">
+                     <div class="item-inner">
+                       <div class="item-title item-label">E-mail</div>
+                       <div class="item-input-wrap">
+                         <input id="txtEmailRegister" type="email" name="email" placeholder="E-mail">
+                       </div>
+                     </div>
+                   </div>
+                 </li>
+                <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Contraseña</div>
+                        <div class="item-input-wrap">
+                          <input id="txtPassRegister" type="password" name="Contraseña" placeholder="Contraseña">
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </li>
+                 <li>
+                   <div class="item-content item-input">
+                     <div class="item-inner">
+                       <div class="item-title item-label">Tipo de Usuario</div>
+                       <div class="item-input-wrap">
+                         <select id="txtTipousuario" name="gender">
+                           <option value="1" selected>Donador</option>
+                           <option value="2">Beneficiario</option>
+                         </select>
+                       </div>
+                     </div>
+                   </div>
+                 </li>
+               </ul>
+             <div class="block block-strong row">
+             <div class="col"><a class="button convert-form-to-data back" href="/login/">Atrás</a></div>
+             <div class="col"><a class="button convert-form-to-data" id="btnRegistro" href="#">Registrar</a></div>
+             <div class="col"><a class="button convert-form-to-data" id="btnSalir" href="#">Salir</a></div>
+             </div>
+
+             </form>
+
           </div>
         </div>
       </div>
@@ -74,5 +128,6 @@
       <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
 
   <script src="js/Registro.js"></script>
+  <script src="js/funciones.js"></script>
   </body>
 </html>
