@@ -23,25 +23,27 @@
         const btnRegistro=document.getElementById('btnRegistro');
 
         btnLogin.addEventListener("click", e => {
-            const email= txtEmail.value;
-            const password=txtPass.value;
+            let email= txtEmail.value;
+            let password=txtPass.value;
             const auth=firebase.auth();
 
             //Logueo
-            const promise=auth.signInWithEmailAndPassword(email,password).then(function(result) {
-              console.log(result);
-               console.log("hasta aqui dio");
-               consultarUser(email);
-               console.log("paso");
-            }).catch(function(error) {
-              // An error happened.
+            const promise=auth.signInWithEmailAndPassword(email,password).then(function(result)
+            {
+                console.log(result);
+                consultarUser(email);
+                limpiarCamposLogin()
+               
+            }).catch(function(error) 
+            {
+              alert("a ocurrido un error: "+error);
             });
         });
 
         btnRegistro.addEventListener("click", e => {
 
-            const email= txtEmailRegister.value;
-            const password=txtPassRegister.value;
+            let email= txtEmailRegister.value;
+            let password=txtPassRegister.value;
             let txtTipousuario=document.getElementById("txtTipousuario").value;
             let txtNomEmpresa=document.getElementById("txtNomEmpresa").value;
             const auth=firebase.auth();
@@ -51,18 +53,21 @@
 
             //Registro
             //Nota: Si se creó la cuenta nueva, el usuario accede automáticamente
-            const promise=auth.createUserWithEmailAndPassword(email,password).then(function(result) {
-              console.log(result);
-               referencia.push({
+            const promise=auth.createUserWithEmailAndPassword(email,password).then(function(result) 
+            {
+                console.log(result);
+                referencia.push({
                     correo: email,
                     Empresa: txtNomEmpresa,
                     tipoUsuario:txtTipousuario
                 });
-               alert("Registro exitoso");
-               consultarUser(email);
+                alert("Registro exitoso");
+                limpiarCamposRegistro();
+                consultarUser(email);
+
                
             }).catch(function(error) {
-              // An error happened.
+              alert("a ocurrido un error: "+error);
             });
             //promise.catch( e => console.log(e.message));
             }
@@ -134,16 +139,29 @@ function consultarUser(correo)
     var Users = snapshot.val();
     var user="";
     if(Users.correo===correo)
-    {
-        user=snapshot.val();
-        console.log(user);
-        console.log("el tipo de usu es: "+user.tipoUsuario);
-        ValidarTipoUsuario(user.tipoUsuario);
-        return "";
-    }
-
-    
+        {
+            user=snapshot.val();
+            console.log(user);
+            console.log("el tipo de usu es: "+user.tipoUsuario);
+            ValidarTipoUsuario(user.tipoUsuario);
+            return "";
+        }  
   
-});
+    });
 }
+
+function limpiarCamposRegistro()
+{
+    document.getElementById('txtEmailRegister').value="";
+    document.getElementById("txtPassRegister").value=""; 
+    document.getElementById("txtNomEmpresa").value="";
+
+}
+
+function limpiarCamposLogin()
+{
+    txtEmail=document.getElementById('txtEmail').value="";
+    txtPass=document.getElementById('txtPass').value="";
+}
+
 
