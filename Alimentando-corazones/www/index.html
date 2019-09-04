@@ -29,7 +29,7 @@
    
         <!-- page-content has additional login-screen content -->
         <div class="page-content login-screen-content">
-        <!-- Login form -->
+        <!-- -------------------inicio de sesion------------ -->
                 <form id="login" >
                 <div class="login-screen-title">Alimentando Corazones</div>
                   <div class="list">
@@ -63,6 +63,7 @@
                     </ul>
                   </div>
              </form>
+             <!-- -------------------registro------------ -->
              <form class="list form-store-data ocultar " id="register">
               <div class="login-screen-title">Registro</div>
                <ul>
@@ -116,8 +117,8 @@
              </div>
 
              </form>
-
-          <div data-name="Beneficiario" class="page">
+          <!-- -------------------perfil beneficiario------------ -->
+          <div data-name="Beneficiario" class="page" id="beneficiario">
 
           <!-- Top Navbar -->
           <div class="navbar">
@@ -132,14 +133,12 @@
               <!-- Toolbar links -->
               <a href="#" class="link">MI CANASTA</a>
               <a href="#" class="link">HOME</a>
-              <a href="#" class="link">BUSCAR</a>
+              <a onclick="interfazBuscarDonaciones()" class="link">BUSCAR</a>
             </div>
           </div>
 
           <!-- Scrollable page content -->
           <div class="page-content">
-
-            
        
         <div class="page-content infinite-scroll-content infinite-scroll-top">
           <div class="card">
@@ -151,9 +150,46 @@
             <div class="card-footer">UBICACIÓN: plaza minorista</div>
           </div>
           </div>
-
-          </div>
+         </div>
         </div>
+          <!-- -------------------buscar donaciones------------ -->
+           <div class="page ocultar" id="buscarD">
+             <div class="navbar">
+               <div class="navbar-inner">
+                 <div class="title">Buscar Donaciones</div>
+               </div>
+             </div>
+             <div class="page-content">
+               <!-- Searchbar backdrop -->
+               <div class="searchbar-backdrop"></div>
+               <!-- hide-on-search element -->
+               <div class="block searchbar-hide-on-search">
+                   <form class="searchbar">
+                     <div class="searchbar-inner">
+                       <div class="searchbar-input-wrap">
+                         <input type="search" placeholder="Search">
+                         <i class="searchbar-icon"></i>
+                         <span class="input-clear-button"></span>
+                       </div>
+                       <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                     </div>
+                   </form>
+               </div>
+
+               <!-- search target list -->
+               <div class="list searchbar-found" id="DonationsContainer">
+                  
+                </div>
+             </div>
+                  <div class="toolbar toolbar-bottom">
+                  <div class="toolbar-inner">
+                         <!-- Toolbar links -->
+                    <a href="#" class="link">MI CANASTA</a>
+                    <a onclick="interfazBeneficiario()" class="link">HOME</a>
+                    <a  class="link">BUSCAR</a>
+                  </div>
+                </div>
+           </div>
 
           </div>
         </div>
@@ -168,5 +204,10 @@
 
   <script src="js/Registro.js"></script>
   <script src="js/funciones.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="js/donaciones.js"></script>
   </body>
 </html>
