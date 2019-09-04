@@ -1,7 +1,4 @@
-(function() {
-
-
-        const firebaseConfig = {
+const firebaseConfig = {
             apiKey: "AIzaSyCHYDqXyZHsMa8HBupwUiFEkDJBd0HzRts",
             authDomain: "alimentandocorazones-c4f2c.firebaseapp.com",
             databaseURL: "https://alimentandocorazones-c4f2c.firebaseio.com",
@@ -11,8 +8,15 @@
             appId: "1:717936080130:web:9c6bef3ca09ea718"
           };
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var databaseService = firebase.database();
+firebase.initializeApp(firebaseConfig);
+var databaseService = firebase.database();
+var refDonaciones = databaseService.ref('Donaciones');
+
+
+(function() {
+
+
+        
         var referencia = databaseService.ref('Users');
         const txtEmail=document.getElementById('txtEmail');
         const txtEmailRegister=document.getElementById('txtEmailRegister');
@@ -61,6 +65,35 @@
                     Empresa: txtNomEmpresa,
                     tipoUsuario:txtTipousuario
                 });
+                // quemado temporal para hacer funcionalidad consultar donaciones
+                refDonaciones.push({
+
+                    Donador: email,
+                    Empresa: txtNomEmpresa,
+                    Dirección: "Calle 54 No 23-10",
+                    Horario:"Martes 8-5",
+                    fechaCaducacion:"dd-mm-yyyyy",
+                    telefono:52141078,
+                    productos:
+                    [
+                        {
+                            producto:"Tomate",
+                            cantidad:"1",
+                            unidad:"Kilo"
+                        },
+                        {
+                            producto:"limon",
+                            cantidad:"40",
+                            unidad:"unidades"
+                        },
+                        {
+                            producto:"Papa",
+                            cantidad:"5",
+                            unidad:"kilos"
+                        },
+                    ],
+                    anotaciones:"Recorrer lo mas rapido posible"
+                });
                 alert("Registro exitoso");
                 limpiarCamposRegistro();
                 consultarUser(email);
@@ -77,9 +110,9 @@
             }
         });
 
-        btnOut.addEventListener("click", e => {
+        /*btnOut.addEventListener("click", e => {
             firebase.auth().signOut();
-        });
+        });*/
 
         firebase.auth().onAuthStateChanged(firebaseUser => 
         {
@@ -131,10 +164,6 @@ function ValidarTipoUsuario(num)
 
 function consultarUser(correo)
 {
-    console.log("entro a la funcion 1");
-    var databaseService = firebase.database();
-    var referencia = databaseService.ref('Users');
-    console.log("antes de la consulta");
     referencia.on("child_added", function(snapshot, prevChildKey) {   
     var Users = snapshot.val();
     var user="";
@@ -163,5 +192,45 @@ function limpiarCamposLogin()
     txtEmail=document.getElementById('txtEmail').value="";
     txtPass=document.getElementById('txtPass').value="";
 }
+
+function logOut()
+{
+   firebase.auth().signOut();
+   //redirrecionar al inicio
+   window.location.href = "index.html"; 
+}
+
+
+function consultarDonaciones()
+{
+    refDonaciones.on("child_added", function(snapshot, prevChildKey) 
+    {   
+    //var donacion = snapshot.val();
+        console.log(snapshot.val());
+        console.log(snapshot);
+        //VisualizarDonacion(donacion);
+    });
+}
+
+function VisualizarDonacion(donacion)
+{
+        // funcion que mostrara los primeros detalles de la donador, direccion
+}
+
+
+/*
+-Donador
+-Dirección
+-Horario:
+[
+producto:
+cantidad:
+]
+fecha caducacion:
+telefono: ->whatsapp?
+
+*/
+
+    
 
 
