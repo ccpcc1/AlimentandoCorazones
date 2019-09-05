@@ -18,10 +18,18 @@ function visualizarDonacion(donacion)
         // funcion que mostrara los primeros detalles de la donador, direccion
         console.log(donacion);
         $("#DonationsContainer").append("\
-        				<div clas='card'>\
-        					<div class='card-header'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+"</div>\
-                       		<div class='card-content card-content-padding'><h5>CorreoDonador:"+donacion.email+"</h5><h5>Empresa:"+donacion.Empresa+"</h5><h5>Horario de atencion:"+donacion.Horario+"</h5><h5>fechaCaducacion:"+donacion.fechaCaducacion+"</h5>         <h5>Contacto:"+donacion.telefono+"</h5><h5>anotaciones:"+donacion.anotaciones+"</h5></div>\
-                       		<div class='card-footer'>UBICACIÓN: "+donacion.Dirección+"</div>\
+        				<div class='card card-expandable'>\
+        				<div class='card-content'>\
+        				<div class='bg-color-yellow' style='height: 300px'>\
+        				<div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+        				<a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
+        				</div>\
+        				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
+                       		</div>\
                      </div>");  
+
+
       
 }
+
+

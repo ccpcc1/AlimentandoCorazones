@@ -8,12 +8,21 @@ register.className=" ocultar";
 login.className=" animated slideInUp ";	
 }
 
-function interfazBuscarDonaciones() {
+function interfazHistorial() {
 beneficiario.className=" ocultar";
-buscarD.className=" page animated slideInRight ";	
+historiAl.className=" page animated slideInRight ";	
 }
 
 function interfazBeneficiario() {
 beneficiario.className=" page animated slideInLeft";
-buscarD.className=" ocultar ";	
+historiAl.className=" ocultar ";	
 }
+
+function interfazBeneficiarioInicio() {
+beneficiario.className=" page animated slideInUp";
+menuBajo.className=" toolbar toolbar-bottom animated slideInUp";
+historiAl.className=" ocultar ";
+login.className=" ocultar";	
+}
+
+

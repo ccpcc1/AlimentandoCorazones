@@ -57,7 +57,7 @@
                   <div class="list">
                     <ul>
                       <li>
-                        <a href="#" id="btnLogin" class="item-link list-button">Iniciar sesión</a>
+                        <a onclick="interfazBeneficiarioInicio()" id="btnLogin" class="item-link list-button">Iniciar sesión</a>
                         <a onclick="interfazRegistro()"  id="btnRegistrarse" class="item-link list-button">Registrar</a>
                       </li>
                     </ul>
@@ -118,82 +118,85 @@
 
              </form>
           <!-- -------------------perfil beneficiario------------ -->
-          <div data-name="Beneficiario" class="page" id="beneficiario">
+          <div data-name="Beneficiario" class="page ocultar" id="beneficiario">
 
           <!-- Top Navbar -->
           <div class="navbar">
             <div class="navbar-inner">
               <div class="title">Beneficiario</div>
             </div>
+
           </div>
 
           <!-- Bottom Toolbar -->
-          <div class="toolbar toolbar-bottom">
-            <div class="toolbar-inner">
-              <!-- Toolbar links -->
-              <a href="#" class="link">MI CANASTA</a>
-              <a href="#" class="link">HOME</a>
-              <a onclick="interfazBuscarDonaciones()" class="link">BUSCAR</a>
-            </div>
-          </div>
+
 
           <!-- Scrollable page content -->
-          <div class="page-content">
-       
-        <div class="page-content infinite-scroll-content infinite-scroll-top">
-          <div class="card">
-            <div class="card-header">PRODUCTO: espinaca</div>
-            <div class="card-content card-content-padding">
-              <!-- Card content -->
-              espinaca de popeye radioactiva
-            </div>
-            <div class="card-footer">UBICACIÓN: plaza minorista</div>
-          </div>
-          </div>
+        <div class="page-content">
+          <div class="block searchbar-hide-on-search ">
+              <form class="searchbar">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Search">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                </div>
+              </form>
+          </div>             
+           <div class="list searchbar-found" id="DonationsContainer">
+
+                  
+           </div>   
          </div>
         </div>
-          <!-- -------------------buscar donaciones------------ -->
-           <div class="page ocultar" id="buscarD">
+          <!-- -------------------Historial------------ -->
+           <div class="page ocultar" id="historiAl">
              <div class="navbar">
                <div class="navbar-inner">
-                 <div class="title">Buscar Donaciones</div>
+                 <div class="title">Historial</div>
                </div>
              </div>
              <div class="page-content">
                <!-- Searchbar backdrop -->
                <div class="searchbar-backdrop"></div>
                <!-- hide-on-search element -->
-               <div class="block searchbar-hide-on-search">
-                   <form class="searchbar">
-                     <div class="searchbar-inner">
-                       <div class="searchbar-input-wrap">
-                         <input type="search" placeholder="Search">
-                         <i class="searchbar-icon"></i>
-                         <span class="input-clear-button"></span>
-                       </div>
-                       <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-                     </div>
-                   </form>
-               </div>
 
                <!-- search target list -->
-               <div class="list searchbar-found" id="DonationsContainer">
-                  
-                </div>
-             </div>
-                  <div class="toolbar toolbar-bottom">
-                  <div class="toolbar-inner">
-                         <!-- Toolbar links -->
-                    <a href="#" class="link">MI CANASTA</a>
-                    <a onclick="interfazBeneficiario()" class="link">HOME</a>
-                    <a  class="link">BUSCAR</a>
+                <div class="card card-expandable">
+                <div class="card-content">
+                  <div class="bg-color-yellow" style="height: 300px">
+                    <div class="card-header text-color-black display-block">
+                      Framework7
+                      <br>
+                      <small style="opacity: 0.7">Build Mobile Apps</small>
+                    </div>
+                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
+                    </a>
+                  </div>
+                  <div class="card-content-padding">
+                    <p>Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working app prototype as soon as possible in case you need to.</p>
+      ...
                   </div>
                 </div>
-           </div>
+              </div>
 
+
+
+             </div>
+           </div>
           </div>
         </div>
-      </div>
+          <div class="toolbar toolbar-bottom ocultar" id="menuBajo">
+             <div class="toolbar-inner">
+                    <!-- Toolbar links -->
+              <a href="#" class="link">MI CANASTA</a>
+              <a onclick="interfazBeneficiario()" class="link">HOME</a>
+              <a onclick="interfazHistorial()"  class="link">HISTORIAL</a>
+            </div>
+          </div>
+      </div>      
     </div>
     <!-- Path to Framework7 Library Bundle JS-->
     <script type="text/javascript" src="js/framework7.bundle.min.js"></script>
