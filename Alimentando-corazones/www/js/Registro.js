@@ -144,8 +144,9 @@ function ValidarTipoUsuario(num)
             break;
 
         case 2://Comedores comunitarios
-            alert("Comedores comunitarios");
-            console.log("Comedores comunitarios");       
+            //alert("Comedores comunitarios");
+            //console.log("Comedores comunitarios");  
+            interfazBeneficiarioInicio();     
             break;
 
         case 3://Admin ->por silas moscas
@@ -219,16 +220,33 @@ function VisualizarDonacion(donacion)
 
 
 /*
--Donador
--Dirección
--Horario:
-[
-producto:
-cantidad:
-]
-fecha caducacion:
-telefono: ->whatsapp?
-
+Donador: email,
+                    Empresa: txtNomEmpresa,
+                    Dirección: "Calle 54 No 23-10",
+                    Horario:"Martes 8-5",
+                    fechaCaducacion:"dd-mm-yyyyy",
+                    telefono:52141078,
+                    productos:
+                    [
+                        {
+                            producto:"Tomate",
+                            cantidad:"1",
+                            unidad:"Kilo",
+                            reservado:????
+                        },
+                        {
+                            producto:"limon",
+                            cantidad:"40",
+                            unidad:"unidades"
+                        },
+                        {
+                            producto:"Papa",
+                            cantidad:"5",
+                            unidad:"kilos"
+                        },
+                    ],
+                    anotaciones:"Recorrer lo mas rapido posible"
+                    Estado:
 */
 
     

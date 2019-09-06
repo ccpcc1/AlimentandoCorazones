@@ -32,4 +32,39 @@ function visualizarDonacion(donacion)
       
 }
 
+// a partir de aqui es la parte del crud del pefil Donador y demas que involucre dicho perfil
 
+function CapturarDonacion(id)
+{
+
+}
+
+function IngresarDonacion(donacion)
+{
+
+}
+
+function ConsultarMisDonaciones()
+{
+
+}
+
+function EliminarDonations(key)
+{
+
+	refDonaciones.child(key).remove();
+
+}
+
+
+function recargarDonations()
+{
+	LimpiarDonaciones();
+	ConsultarMisDonaciones();
+
+}
+
+function LimpiarDonaciones()
+{
+
+}
