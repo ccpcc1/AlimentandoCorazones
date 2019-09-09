@@ -11,13 +11,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var databaseService = firebase.database();
 var refDonaciones = databaseService.ref('Donaciones');
-
+var referencia = databaseService.ref('Users');
+var LoginUSer="";
 
 (function() {
 
 
         
-        var referencia = databaseService.ref('Users');
+        
         const txtEmail=document.getElementById('txtEmail');
         const txtEmailRegister=document.getElementById('txtEmailRegister');
         const txtPass=document.getElementById('txtPass');
@@ -116,6 +117,7 @@ var refDonaciones = databaseService.ref('Donaciones');
 
         firebase.auth().onAuthStateChanged(firebaseUser => 
         {
+
             if (firebaseUser)
             {
                 console.log(firebaseUser);
@@ -139,8 +141,9 @@ function ValidarTipoUsuario(num)
     switch(tipoUsu)
     {
         case 1://Empresa donadora
-            alert("Empresa donadora");
-            console.log("Empresa donadora");    
+            //alert("Empresa donadora");
+            //console.log("Empresa donadora");  
+            interfazDonador(); 
             break;
 
         case 2://Comedores comunitarios
@@ -171,10 +174,14 @@ function consultarUser(correo)
     if(Users.correo===correo)
         {
             user=snapshot.val();
+            LoginUSer=snapshot;
+            //LoginUSer.key -> lo necesito para modificar o algo por medio de la key
+            //user.val() -> obtener la data
             console.log(user);
             console.log("el tipo de usu es: "+user.tipoUsuario);
+            
             ValidarTipoUsuario(user.tipoUsuario);
-            return "";
+            return 0;
         }  
   
     });

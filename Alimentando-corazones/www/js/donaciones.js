@@ -34,10 +34,29 @@ function visualizarDonacion(donacion)
 
 // a partir de aqui es la parte del crud del pefil Donador y demas que involucre dicho perfil
 
-function CapturarDonacion(id)
+function CapturarDonacion()
 {
+	var donacion=
+	{
+		Donador:"",
+		Empresa:"",
+		Dirección:document.getElementById(""),
+		Horario: document.getElementById("")+" - "+ document.getElementById(""),
+		fechaCaducacion:document.getElementById(""),
+		telefono:document.getElementById(""),
+		productos:
+		[
+			producto:document.getElementById(""),
+			cantidad:document.getElementById(""),
+			unidad:document.getElementById(""),
+		]
+		anotaciones:document.getElementById(""),	
+		Estado:"Disponible"	
+	}
+	IngresarDonacion(donacion);	
 
 }
+
 
 function IngresarDonacion(donacion)
 {
