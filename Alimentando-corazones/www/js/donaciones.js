@@ -38,29 +38,33 @@ function CapturarDonacion()
 {
 	var donacion=
 	{
-		Donador:"",
-		Empresa:"",
-		Dirección:document.getElementById(""),
-		Horario: document.getElementById("")+" - "+ document.getElementById(""),
-		fechaCaducacion:document.getElementById(""),
-		telefono:document.getElementById(""),
+		Donador:LoginUSer.val().Empresa,
+		Correo:LoginUSer.val().correo,
+		Dirección:document.getElementById("txtUbicacion").value,
+		Horario: document.getElementById("txtHorarioAtencionInicio").value+" - "+ document.getElementById("txtHorarioAtencionFinal").value,
+		fechaCaducacion:document.getElementById("txtFechaCaducacion").value,
+		telefono:document.getElementById("txtContacto").value,
 		productos:
 		[
-			producto:document.getElementById(""),
-			cantidad:document.getElementById(""),
-			unidad:document.getElementById(""),
-		]
-		anotaciones:document.getElementById(""),	
+			{
+
+				producto:document.getElementById("txtNomProducto").value,
+				cantidad:document.getElementById("txtCantidadProducto").value,
+				//unidad:document.getElementById(""),
+			}
+		],
+		anotaciones:document.getElementById("txtNotas").value,	
 		Estado:"Disponible"	
 	}
-	IngresarDonacion(donacion);	
+	console.log(donacion);
+	//IngresarDonacion(donacion);	
 
 }
 
 
 function IngresarDonacion(donacion)
 {
-
+	refDonaciones.push(donacion);
 }
 
 function ConsultarMisDonaciones()
