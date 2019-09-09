@@ -59,6 +59,7 @@
                       <li>
                         <a onclick="interfazBeneficiarioInicio()" id="btnLogin" class="item-link list-button">Iniciar sesión</a>
                         <a onclick="interfazRegistro()"  id="btnRegistrarse" class="item-link list-button">Registrar</a>
+                        <a onclick="interfazDonadorInicio()" id="btnLogin" class="item-link list-button">Iniciar sesiónDonador</a>
                       </li>
                     </ul>
                   </div>
@@ -186,8 +187,246 @@
 
              </div>
            </div>
+
+
+
+
+
+
+
+<!-- -------------------perfil Donador------------ -->
+          <div data-name="Donador" class="page ocultar" id="donador">
+
+          <!-- Top Navbar -->
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Donador</div>
+              <a onclick="interfaznuevaDonacionDonador()"  id="btnAgregarDonacion" class="col button button-fill button-round" ></a>
+            </div>
+
+              
+          </div>
+
+          <!-- Bottom Toolbar -->
+
+
+          <!-- Scrollable page content -->
+        <div class="page-content">
+          <div class="block searchbar-hide-on-search ">
+              <form class="searchbar">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Search">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+
+                </div>
+              </form>
+          </div>             
+           <div class="list searchbar-found" id="DonationsContainer">
+
+
+                  
+           </div>   
+         </div>
+        </div>
+          <!-- -------------------HistorialDonador------------ -->
+           <div class="page ocultar" id="historiAlDonador">
+             <div class="navbar">
+               <div class="navbar-inner">
+                 <div class="title">Historial</div>
+               </div>
+             </div>
+             <div class="page-content">
+               <!-- Searchbar backdrop -->
+               <div class="searchbar-backdrop"></div>
+               <!-- hide-on-search element -->
+
+               <!-- search target list -->
+                <div class="card card-expandable">
+                <div class="card-content">
+                  <div class="bg-color-yellow" style="height: 300px">
+                    <div class="card-header text-color-black display-block">
+                      Historial
+
+                      <br>
+                      <small style="opacity: 0.7">Build Mobile Apps</small>
+                    </div>
+                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
+
+                    </a>
+                  </div>
+                  <div class="card-content-padding">
+                    <p></p>
+      ...
+                  </div>
+                </div>
+              </div>
+
+
+
+             </div>
+           </div>
+
+
+ <!-- -------------------Pedidos Acutales------------ -->
+           <div class="page ocultar" id="pedidosActualesDonador">
+             <div class="navbar">
+               <div class="navbar-inner">
+                 <div class="title">PedidosActuales</div>
+               </div>
+             </div>
+             <div class="page-content">
+               <!-- Searchbar backdrop -->
+               <div class="searchbar-backdrop"></div>
+               <!-- hide-on-search element -->
+
+               <!-- search target list -->
+                <div class="card card-expandable">
+                <div class="card-content">
+                  <div class="bg-color-yellow" style="height: 300px">
+                    <div class="card-header text-color-black display-block">
+                      Pedido 1
+                      <br>
+                      <small style="opacity: 0.7">Build Mobile Apps</small>
+                    </div>
+                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
+                      <a onclick="" id="btnCancelarPedidos" class="item-link list-button">Cancelar Pedido</a>
+                    </a>
+                  </div>
+                  <div class="card-content-padding">
+                    <p></p>
+      ...
+                  </div>
+                </div>
+              </div>
+
+
+
+             </div>
+           </div>
+
+
+
+
+
+
+
+           <!-- -------------------Crear Donacion------------ -->
+             
+    <div class="page ocultar" id="nuevaDonacion">
+      <div class="login-screen-title">Crear Nueva Donación</div>
+    <div class="list no-hairlines-md">
+      <ul>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Descripción Del Producto</div>
+              <div class="item-input-wrap">
+                <input id="txtNomProducto" type="text" name="descripcion" placeholder="Nombre del producto">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+             <div class="item-title item-label">Cantidad Producto</div>
+              <div class="item-input-wrap">
+              <input id="txtCantidadProducto" type="text" name="cantidad" placeholder="Cantidad en Kilos">    
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Horario de Atención</div>
+                <div class="item-input-wrap">
+                  <br>
+                  <br>
+                  <div class="item-title item-label">Hora De Apertura</div>
+                <input id="txtHorarioAtencionInicio" type="time" name="horarioAtencionInicio" placeholder="horarioInicial" value="11:00">    
+                <div class="item-title item-label">Hora De Cierre</div> 
+                <input id="txtHorarioAtencionFinal" type="time" name="horarioAtencionFinal" placeholder="horarioFinal" value="12:00">
+                            
+              </div>
+            </div>
+          </div>
+        </li>
+        
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Telefono</div>
+              <div class="item-input-wrap">
+                <input id="txtContacto" type="tel" name="contacto" placeholder="Numero de contacto">
+              </div>
+            </div>
+          </div>
+        </li>
+        
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Fecha de Caducidad</div>
+              <div class="item-input-wrap">
+                <input type="date" id="txtFechaCaducacion" name="fechaCaducacion" placeholder="Fecha de entrega" value="aaaa-mm-dd"/>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Nota Adicionales</div>
+               <div class="item-input-wrap">
+               <input id="txtNotas" type="text" name="notas" placeholder="Notas Adicionales">             
+              </div>
+            </div>
+          </div>
+        </li>
+        
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Ubicación</div>
+               <div class="item-input-wrap">
+              <input id="txtUbicacion" type="text" name="ubicacion" placeholder="Ubicación">       
+              </div>
+            </div>
+          </div>
+        </li>
+        <a   id="btnGuardarDonacion" class="col button button-fill button-round" >Crear Nueva Donación</a>
+        
+      </ul>
+        </div>
+          </div>
+
+
+
+
+
+
+
           </div>
         </div>
+
+          <div class="toolbar toolbar-bottom ocultar" id="menuBajoDonador">
+             <div class="toolbar-inner">
+                    <!-- Toolbar links -->
+                    
+              <a onclick="interfazPedidosActualesDonador()" class="link">PEDIDOS ACTUALES</a>
+              <a onclick="interfazDonador()" class="link">HOME</a>
+              <a onclick="interfazHistoriAlDonador()"  class="link">HISTORIAL</a>
+            </div>
+          </div>
+
+
+
           <div class="toolbar toolbar-bottom ocultar" id="menuBajo">
              <div class="toolbar-inner">
                     <!-- Toolbar links -->
