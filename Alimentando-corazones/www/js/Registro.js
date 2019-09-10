@@ -122,6 +122,7 @@ var LoginUSer="";
             {
                 console.log(firebaseUser);
                 console.log("mostrar boton cerrar sesión");
+                consultarUser(firebaseUser.email);
                 
             }
             else

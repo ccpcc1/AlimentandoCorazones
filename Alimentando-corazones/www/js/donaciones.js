@@ -1,6 +1,3 @@
-var databaseService = firebase.database();
-var refDonaciones = databaseService.ref('Donaciones');
-
 
 function consultarDonaciones()
 {
@@ -57,13 +54,14 @@ function CapturarDonacion()
 		Estado:"Disponible"	
 	}
 	console.log(donacion);
-	//IngresarDonacion(donacion);	
+	ingresarDonacion(donacion);	
 
 }
 
 
-function IngresarDonacion(donacion)
+function ingresarDonacion(donacion)
 {
+	//console.log(donacion);
 	refDonaciones.push(donacion);
 }
 
