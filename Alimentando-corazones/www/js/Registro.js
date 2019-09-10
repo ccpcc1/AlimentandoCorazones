@@ -98,6 +98,7 @@ var LoginUSer="";
             else
             {
                 console.log("el usuario no esta logueado");
+                interfazLogin();
             }
         })
 }());
