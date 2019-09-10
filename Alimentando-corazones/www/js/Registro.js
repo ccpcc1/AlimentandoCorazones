@@ -13,7 +13,6 @@ var databaseService = firebase.database();
 var refDonaciones = databaseService.ref('Donaciones');
 var referencia = databaseService.ref('Users');
 var LoginUSer="";
-
 (function() {
 
 
@@ -65,36 +64,7 @@ var LoginUSer="";
                     correo: email,
                     Empresa: txtNomEmpresa,
                     tipoUsuario:txtTipousuario
-                });
-                // quemado temporal para hacer funcionalidad consultar donaciones
-                refDonaciones.push({
-
-                    Donador: email,
-                    Empresa: txtNomEmpresa,
-                    Dirección: "Calle 54 No 23-10",
-                    Horario:"Martes 8-5",
-                    fechaCaducacion:"dd-mm-yyyyy",
-                    telefono:52141078,
-                    productos:
-                    [
-                        {
-                            producto:"Tomate",
-                            cantidad:"1",
-                            unidad:"Kilo"
-                        },
-                        {
-                            producto:"limon",
-                            cantidad:"40",
-                            unidad:"unidades"
-                        },
-                        {
-                            producto:"Papa",
-                            cantidad:"5",
-                            unidad:"kilos"
-                        },
-                    ],
-                    anotaciones:"Recorrer lo mas rapido posible"
-                });
+                }); 
                 alert("Registro exitoso");
                 limpiarCamposRegistro();
                 consultarUser(email);
@@ -154,12 +124,11 @@ function ValidarTipoUsuario(num)
             break;
 
         case 3://Admin ->por silas moscas
-            alert("admin");
-            console.log("admin");
+            console.log("admin, bienvenido... te la creiste");
             break;
 
         default:
-            alert("nos hackearon, activar contramedidas");
+            
             console.log("nos hackearon, activar contramedidas");
             break
     }
@@ -169,6 +138,24 @@ function ValidarTipoUsuario(num)
 
 function consultarUser(correo)
 {
+    var key="";
+    var user="";
+    referencia.orderByChild('correo').equalTo(correo).on("value", function(snapshot) 
+    {
+           
+        user=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+            key=data.key
+
+        });
+        //console.log("el valor es :");        
+        //console.log("esto es la empresa "+user[key].Empresa);
+        //console.log("tipo usu es "+user[key].tipoUsuario);    
+        ValidarTipoUsuario(user[key].tipoUsuario);
+    });
+
+    /* metodo -> no es muy eficiente
     referencia.on("child_added", function(snapshot, prevChildKey) {   
     var Users = snapshot.val();
     var user="";
@@ -185,7 +172,7 @@ function consultarUser(correo)
             return 0;
         }  
   
-    });
+    });*/
 }
 
 function limpiarCamposRegistro()
