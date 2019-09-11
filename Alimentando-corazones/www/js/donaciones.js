@@ -42,10 +42,7 @@ function visualizarDonacionxdonador(donacion,key)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        		</div>\
                        		</div>\
-                       		<button onclick='EliminarDonations("+key+")'> Eliminar </button> <button>Modificar</button>");  
-
-
-      
+                       		<button onclick='EliminarDonations("+key+")'> Eliminar </button> <button>Modificar</button>");        
 }
 
 function visualizarDonacion(donacion)
@@ -103,10 +100,7 @@ function ingresarDonacion(donacion)
 	refDonaciones.push(donacion);
 }
 
-function ConsultarMisDonaciones()
-{
 
-}
 
 function EliminarDonations(key)
 {
@@ -121,6 +115,34 @@ function recargarDonations()
 	LimpiarDonaciones();
 	ConsultarMisDonaciones();
 
+}
+
+function mostrarDonacionModificar(donacion,key)
+{
+/*
+		document.getElementById().value= LoginUSer.Empresa,
+		document.getElementById().value= LoginUSer.correo,
+		document.getElementById("txtUbicacion").value,
+		document.getElementById("txtHorarioAtencionInicio").value=
+		document.getElementById("txtHorarioAtencionFinal").value=
+		document.getElementById("txtFechaCaducacion").value,
+		document.getElementById("txtContacto").value,
+		document.getElementById("txtNomProducto").value,
+		document.getElementById("txtCantidadProducto").value,
+				//unidad:document.getElementById(""),
+		document.getElementById("txtNotas").value,	*/
+
+}
+
+function modificarDonacion(donacion,key)
+{
+ /*
+ firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+ */
 }
 
 function LimpiarDonaciones()
