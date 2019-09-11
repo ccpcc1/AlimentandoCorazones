@@ -1,7 +1,4 @@
-(function() {
-
-
-        const firebaseConfig = {
+const firebaseConfig = {
             apiKey: "AIzaSyCHYDqXyZHsMa8HBupwUiFEkDJBd0HzRts",
             authDomain: "alimentandocorazones-c4f2c.firebaseapp.com",
             databaseURL: "https://alimentandocorazones-c4f2c.firebaseio.com",
@@ -11,9 +8,16 @@
             appId: "1:717936080130:web:9c6bef3ca09ea718"
           };
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var databaseService = firebase.database();
-        var referencia = databaseService.ref('Users');
+firebase.initializeApp(firebaseConfig);
+var databaseService = firebase.database();
+var refDonaciones = databaseService.ref('Donaciones');
+var referencia = databaseService.ref('Users');
+var LoginUSer="";
+(function() {
+
+
+        
+        
         const txtEmail=document.getElementById('txtEmail');
         const txtEmailRegister=document.getElementById('txtEmailRegister');
         const txtPass=document.getElementById('txtPass');
@@ -60,7 +64,7 @@
                     correo: email,
                     Empresa: txtNomEmpresa,
                     tipoUsuario:txtTipousuario
-                });
+                }); 
                 alert("Registro exitoso");
                 limpiarCamposRegistro();
                 consultarUser(email);
@@ -77,21 +81,24 @@
             }
         });
 
-        btnOut.addEventListener("click", e => {
+        /*btnOut.addEventListener("click", e => {
             firebase.auth().signOut();
-        });
+        });*/
 
         firebase.auth().onAuthStateChanged(firebaseUser => 
         {
+
             if (firebaseUser)
             {
                 console.log(firebaseUser);
                 console.log("mostrar boton cerrar sesión");
+                consultarUser(firebaseUser.email);
                 
             }
             else
             {
                 console.log("el usuario no esta logueado");
+                interfazLogin();
             }
         })
 }());
@@ -106,22 +113,23 @@ function ValidarTipoUsuario(num)
     switch(tipoUsu)
     {
         case 1://Empresa donadora
-            alert("Empresa donadora");
-            console.log("Empresa donadora");    
+            //alert("Empresa donadora");
+            //console.log("Empresa donadora");  
+            interfazDonador(); 
             break;
 
         case 2://Comedores comunitarios
-            alert("Comedores comunitarios");
-            console.log("Comedores comunitarios");       
+            //alert("Comedores comunitarios");
+            //console.log("Comedores comunitarios");  
+            interfazBeneficiarioInicio();     
             break;
 
         case 3://Admin ->por silas moscas
-            alert("admin");
-            console.log("admin");
+            console.log("admin, bienvenido... te la creiste");
             break;
 
         default:
-            alert("nos hackearon, activar contramedidas");
+            
             console.log("nos hackearon, activar contramedidas");
             break
     }
@@ -131,23 +139,42 @@ function ValidarTipoUsuario(num)
 
 function consultarUser(correo)
 {
-    console.log("entro a la funcion 1");
-    var databaseService = firebase.database();
-    var referencia = databaseService.ref('Users');
-    console.log("antes de la consulta");
+    var key="";
+    var user="";
+    referencia.orderByChild('correo').equalTo(correo).on("value", function(snapshot) 
+    {
+           
+        user=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+            key=data.key
+
+        });
+        //console.log("el valor es :");        
+        //console.log("esto es la empresa "+user[key].Empresa);
+        //console.log("tipo usu es "+user[key].tipoUsuario);
+        LoginUSer=user[key];    
+        ValidarTipoUsuario(user[key].tipoUsuario);
+    });
+
+    /* metodo -> no es muy eficiente
     referencia.on("child_added", function(snapshot, prevChildKey) {   
     var Users = snapshot.val();
     var user="";
     if(Users.correo===correo)
         {
             user=snapshot.val();
+            LoginUSer=snapshot;
+            //LoginUSer.key -> lo necesito para modificar o algo por medio de la key
+            //user.val() -> obtener la data
             console.log(user);
             console.log("el tipo de usu es: "+user.tipoUsuario);
+            
             ValidarTipoUsuario(user.tipoUsuario);
-            return "";
+            return 0;
         }  
   
-    });
+    });*/
 }
 
 function limpiarCamposRegistro()
@@ -163,5 +190,34 @@ function limpiarCamposLogin()
     txtEmail=document.getElementById('txtEmail').value="";
     txtPass=document.getElementById('txtPass').value="";
 }
+
+function logOut()
+{
+   firebase.auth().signOut();
+   //redirrecionar al inicio
+   window.location.href = "index.html"; 
+}
+
+
+function consultarDonaciones()
+{
+    refDonaciones.on("child_added", function(snapshot, prevChildKey) 
+    {   
+    //var donacion = snapshot.val();
+        console.log(snapshot.val());
+        console.log(snapshot);
+        //VisualizarDonacion(donacion);
+    });
+}
+
+function VisualizarDonacion(donacion)
+{
+        // funcion que mostrara los primeros detalles de la donador, direccion
+}
+
+
+
+
+    
 
 

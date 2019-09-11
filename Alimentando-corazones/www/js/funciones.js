@@ -14,7 +14,7 @@ historiAl.className=" page animated slideInRight ";
 }
 
 function interfazBeneficiario() {
-beneficiario.className=" page animated slideInLeft";
+beneficiario.className=" page animated slideInUp";
 historiAl.className=" ocultar ";	
 }
 
@@ -37,20 +37,22 @@ login.className=" ocultar";
 
 
 function interfazDonador() {
-donador.className=" page animated slideInLeft";
+donador.className=" page animated slideInUp";
 historiAlDonador.className=" ocultar ";	
 pedidosActualesDonador.className=" ocultar";
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
+menuBajoDonador.className=" toolbar toolbar-bottom animated slideInUp";
+
 consultarDonacionesDonador();
 }
 
 function interfazDonadorInicio() {
 donador.className=" page animated slideInUp";
-menuBajoDonador.className=" toolbar toolbar-bottom animated slideInUp";
 historiAl.className=" ocultar ";
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
+
 
 }
 
@@ -66,7 +68,7 @@ nuevaDonacion.className=" ocultar ";
 function interfazPedidosActualesDonador() {
 donador.className=" ocultar";
 historiAlDonador.className=" ocultar ";	
-pedidosActualesDonador.className=" page animated slideInRight ";	
+pedidosActualesDonador.className=" page animated slideInLeft ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
 }
@@ -85,10 +87,6 @@ pedidosActualesDonador.className=" ocultar";
 }
 
 function interfazModificarDonacionDonador() {
-donador.className=" ocultar";
-historiAlDonador.className=" ocultar ";	
-nuevaDonacion.className=" ocultar ";	
+donador.className=" ocultar";	
 modificarDonacion.className=" page animated slideInRight ";	
-login.className=" ocultar";	
-pedidosActualesDonador.className=" ocultar";
 }
