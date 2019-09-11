@@ -43,6 +43,7 @@ pedidosActualesDonador.className=" ocultar";
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
 menuBajoDonador.className=" toolbar toolbar-bottom animated slideInUp";
+modificarDonacionActual.className=" ocultar";	
 
 consultarDonacionesDonador();
 }
@@ -52,6 +53,7 @@ donador.className=" page animated slideInUp";
 historiAl.className=" ocultar ";
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
+modificarDonacionActual.className=" ocultar";	
 
 
 }
@@ -63,6 +65,7 @@ pedidosActualesDonador.className=" ocultar";
 historiAlDonador.className=" page animated slideInRight ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
+modificarDonacionActual.className=" ocultar";	
 }
 
 function interfazPedidosActualesDonador() {
@@ -71,6 +74,7 @@ historiAlDonador.className=" ocultar ";
 pedidosActualesDonador.className=" page animated slideInLeft ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
+modificarDonacionActual.className=" ocultar";	
 }
 
 
@@ -83,10 +87,15 @@ historiAlDonador.className=" ocultar ";
 nuevaDonacion.className=" page animated slideInRight ";	
 login.className=" ocultar";	
 pedidosActualesDonador.className=" ocultar";
+modificarDonacionActual.className=" ocultar";	
 
 }
 
 function interfazModificarDonacionDonador() {
 donador.className=" ocultar";	
-modificarDonacion.className=" page animated slideInRight ";	
+modificarDonacionActual.className=" page animated slideInRight ";
+historiAlDonador.className=" ocultar ";	
+login.className=" ocultar";
+pedidosActualesDonador.className=" ocultar";
+nuevaDonacion.className=" ocultar";
 }

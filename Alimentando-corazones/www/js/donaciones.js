@@ -31,6 +31,10 @@ function consultarDonacionesDonador()
 
 function visualizarDonacionxdonador(donacion,key)
 { 
+        var donacionTemp= new Object();
+        donacionTemp = donacion;
+        console.log("donacion temporal");
+        console.log(donacionTemp);
         key='"'+key+'"'; // toco fomatear la varaible con comillas
         $("#DonationsContainerDonor").append("\
         				<div class='card card-expandable'>\
@@ -42,7 +46,7 @@ function visualizarDonacionxdonador(donacion,key)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        		</div>\
                        		</div>\
-                       		<div class='card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a onclick='mostrarDonacionModificar("+donacion+","+key+")''> <a class='link'>Modificar</a></div>");        
+                       		<div class='card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
   
 } 
 function visualizarDonacion(donacion)
@@ -92,6 +96,8 @@ function CapturarDonacion()
 	ingresarDonacion(donacion);	
     nuevaDonacion.className=" ocultar";
     donador.className=" page animated slideInUp ";
+    recargarDonations();
+
 }
 
 
@@ -119,19 +125,33 @@ function recargarDonations()
 
 }
 
-function mostrarDonacionModificar(donacion,key)
+function mostrarDonacionModificar(key)
 {
-	var horario=donacion.Horario.split("-");
-		document.getElementById("txtUbicacionm").value=donacion.Dirección
-		document.getElementById("txtHorarioAtencionIniciom").value=horario[0];
-		document.getElementById("txtHorarioAtencionFinalm").value=horario[1];
-		document.getElementById("txtFechaCaducacionm").value=donacion.fechaCaducacion;
-		document.getElementById("txtContactom").value=donacion.telefono;
-		document.getElementById("txtNomProductom").value=donacion.productos[0].producto;
-		document.getElementById("txtCantidadProductom").value=donacion.productos[0].cantidad;
-				//unidad:document.getElementById(""),
-		document.getElementById("txtNotasm").value=	donacion.anotaciones;
 
+    interfazModificarDonacionDonador();
+    var currentDonation=consultaDonacionEspecifica(key);
+	//var horario=currentDonation.Horario.split("-");
+		document.getElementById("txtUbicacionm").value=currentDonation.Dirección
+		document.getElementById("txtHorarioAtencionm").value=currentDonation.Horario;
+		document.getElementById("txtFechaCaducacionm").value=currentDonation.fechaCaducacion;
+		document.getElementById("txtContactom").value=currentDonation.telefono;
+		document.getElementById("txtNomProductom").value=currentDonation.productos[0].producto;
+		document.getElementById("txtCantidadProductom").value=currentDonation.productos[0].cantidad;
+				//unidad:document.getElementById(""),
+		document.getElementById("txtNotasm").value=	currentDonation.anotaciones;
+
+}
+
+function consultaDonacionEspecifica(key)
+{
+
+    var donacionModificando="";
+    refDonaciones.child(key).on("value", function(snapshot) 
+    {
+        console.log(snapshot.val());
+        donacionModificando=snapshot.val();   
+    });
+    return donacionModificando;
 }
 
 function modificarDonacion(donacion,key)
