@@ -23,6 +23,7 @@ beneficiario.className=" page animated slideInUp";
 menuBajo.className=" toolbar toolbar-bottom animated slideInUp";
 historiAl.className=" ocultar ";
 login.className=" ocultar";	
+ consultarDonaciones();
 }
 
 
@@ -41,6 +42,7 @@ historiAlDonador.className=" ocultar ";
 pedidosActualesDonador.className=" ocultar";
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
+consultarDonacionesDonador();
 }
 
 function interfazDonadorInicio() {
@@ -79,4 +81,5 @@ historiAlDonador.className=" ocultar ";
 nuevaDonacion.className=" page animated slideInRight ";	
 login.className=" ocultar";	
 pedidosActualesDonador.className=" ocultar";
+
 }

@@ -152,7 +152,8 @@ function consultarUser(correo)
         });
         //console.log("el valor es :");        
         //console.log("esto es la empresa "+user[key].Empresa);
-        //console.log("tipo usu es "+user[key].tipoUsuario);    
+        //console.log("tipo usu es "+user[key].tipoUsuario);
+        LoginUSer=user[key];    
         ValidarTipoUsuario(user[key].tipoUsuario);
     });
 
