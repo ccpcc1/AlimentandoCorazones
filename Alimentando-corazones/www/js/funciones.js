@@ -91,4 +91,5 @@ nuevaDonacion.className=" ocultar ";
 modificarDonacion.className=" page animated slideInRight ";	
 login.className=" ocultar";	
 pedidosActualesDonador.className=" ocultar";
+
 }

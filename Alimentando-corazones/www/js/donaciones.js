@@ -106,31 +106,34 @@ function EliminarDonations(key)
 {
 	console.log(key)
 	refDonaciones.child(key).remove();
-	//refDonaciones.child("'"+key+"'").remove();
+	recargarDonations();
+
 }
 
 
 function recargarDonations()
 {
-	LimpiarDonaciones();
-	ConsultarMisDonaciones();
+	limpiarDonacionesDonador();
+	consultarDonacionesDonador();
 
 }
 
 function mostrarDonacionModificar(donacion,key)
 {
+
 /*
+		window.location = "index.html?donacion=" + key;
 		document.getElementById().value= LoginUSer.Empresa,
 		document.getElementById().value= LoginUSer.correo,
-		document.getElementById("txtUbicacion").value,
-		document.getElementById("txtHorarioAtencionInicio").value=
-		document.getElementById("txtHorarioAtencionFinal").value=
-		document.getElementById("txtFechaCaducacion").value,
-		document.getElementById("txtContacto").value,
-		document.getElementById("txtNomProducto").value,
-		document.getElementById("txtCantidadProducto").value,
+		document.getElementById("txtUbicacionm").value,
+		document.getElementById("txtHorarioAtencionIniciom").value=
+		document.getElementById("txtHorarioAtencionFinalm").value=
+		document.getElementById("txtFechaCaducacionm").value,
+		document.getElementById("txtContactom").value,
+		document.getElementById("txtNomProductom").value,
+		document.getElementById("txtCantidadProductom").value,
 				//unidad:document.getElementById(""),
-		document.getElementById("txtNotas").value,	*/
+		document.getElementById("txtNotasm").value,	*/
 
 }
 
@@ -145,7 +148,7 @@ function modificarDonacion(donacion,key)
  */
 }
 
-function LimpiarDonaciones()
+function limpiarDonacionesDonador()
 {
-
+	$("#DonationsContainerDonor").empty();
 }
