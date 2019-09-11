@@ -42,7 +42,7 @@ function visualizarDonacionxdonador(donacion,key)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        		</div>\
                        		</div>\
-                       		<button onclick='EliminarDonations("+key+")'> Eliminar </button> <button>Modificar</button>");        
+                       		<button onclick='EliminarDonations("+key+")'> Eliminar </button onclick='mostrarDonacionModificar("+donacion+","+key+")''> <button>Modificar</button>");        
 }
 
 function visualizarDonacion(donacion)
@@ -120,26 +120,30 @@ function recargarDonations()
 
 function mostrarDonacionModificar(donacion,key)
 {
-
-/*
-		window.location = "index.html?donacion=" + key;
-		document.getElementById().value= LoginUSer.Empresa,
-		document.getElementById().value= LoginUSer.correo,
-		document.getElementById("txtUbicacionm").value,
-		document.getElementById("txtHorarioAtencionIniciom").value=
-		document.getElementById("txtHorarioAtencionFinalm").value=
-		document.getElementById("txtFechaCaducacionm").value,
-		document.getElementById("txtContactom").value,
-		document.getElementById("txtNomProductom").value,
-		document.getElementById("txtCantidadProductom").value,
+	var horario=donacion.Horario.split("-");
+		document.getElementById("txtUbicacionm").value=donacion.Dirección
+		document.getElementById("txtHorarioAtencionIniciom").value=horario[0];
+		document.getElementById("txtHorarioAtencionFinalm").value=horario[1];
+		document.getElementById("txtFechaCaducacionm").value=donacion.fechaCaducacion;
+		document.getElementById("txtContactom").value=donacion.telefono;
+		document.getElementById("txtNomProductom").value=donacion.productos[0].producto;
+		document.getElementById("txtCantidadProductom").value=donacion.productos[0].cantidad;
 				//unidad:document.getElementById(""),
-		document.getElementById("txtNotasm").value,	*/
+		document.getElementById("txtNotasm").value=	donacion.anotaciones;
 
 }
 
 function modificarDonacion(donacion,key)
 {
  /*
+ refDonaciones.child(key).remove();-> eliminar
+
+firebase.database().refDonaciones.child(key).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+
  firebase.database().ref('users/' + userId).set({
     username: name,
     email: email,
