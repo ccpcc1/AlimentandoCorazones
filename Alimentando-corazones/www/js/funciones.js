@@ -83,3 +83,12 @@ login.className=" ocultar";
 pedidosActualesDonador.className=" ocultar";
 
 }
+
+function interfazModificarDonacionDonador() {
+donador.className=" ocultar";
+historiAlDonador.className=" ocultar ";	
+nuevaDonacion.className=" ocultar ";	
+modificarDonacion.className=" page animated slideInRight ";	
+login.className=" ocultar";	
+pedidosActualesDonador.className=" ocultar";
+}
