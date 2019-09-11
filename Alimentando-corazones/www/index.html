@@ -140,7 +140,6 @@
                 <div class="searchbar-inner">
                   <div class="searchbar-input-wrap">
                     <input type="search" placeholder="Search">
-
                     <i class="searchbar-icon"></i>
                     <span class="input-clear-button"></span>
                   </div>
@@ -204,8 +203,8 @@
             <div class="navbar-inner">
               <div class="title">Donador</div>
               <a onclick="interfaznuevaDonacionDonador()"  id="btnAgregarDonacion" class="col button button-fill button-round" >Nueva donación</a>
+              <a onclick="interfazModificarDonacionDonador()"  id="btnModificarDonacion" class="col button button-fill button-round" >modificar</a>
               <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
-              <a onclick="interfazModificarDonacionDonador()"  id="btnModificarDonacion" class="col button button-fill button-round" ></a>
             </div>
 
               
@@ -230,6 +229,7 @@
               </form>
           </div>             
            <div class="list searchbar-found" id="DonationsContainerDonor">
+            
 
 
                   
@@ -413,92 +413,6 @@
 
 
 
-
-              <!-- -------------------Modificar Donacion------------ -->
-             
-    <div class="page ocultar" id="modificarDonacion">
-      <div class="login-screen-title">Modificar Donación</div>
-    <div class="list no-hairlines-md">
-      <ul>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-               <div class="item-title item-label">Descripción Del Producto</div>
-              <div class="item-input-wrap">
-                <input id="txtNomProductom" type="text" name="descripcion" placeholder="Nombre del producto">
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-             <div class="item-title item-label">Cantidad Producto</div>
-              <div class="item-input-wrap">
-              <input id="txtCantidadProductom" type="text" name="cantidad" placeholder="Cantidad en Kilos">    
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Horario de Atención</div>
-                <div class="item-input-wrap">
-                <input id="txtHorarioAtencionm" type="text" name="horarioAtencion" placeholder="horario">                
-              </div>
-            </div>
-          </div>
-        </li>
-        
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Telefono</div>
-              <div class="item-input-wrap">
-                <input id="txtContactom" type="tel" name="contacto" placeholder="Numero de contacto">
-              </div>
-            </div>
-          </div>
-        </li>
-        
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Fecha de Caducidad</div>
-              <div class="item-input-wrap">
-                <input type="date" id="txtFechaCaducacionm" name="fechaCaducacion" placeholder="Fecha de entrega" value="aaaa-mm-dd"/>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-               <div class="item-title item-label">Nota Adicionales</div>
-               <div class="item-input-wrap">
-               <input id="txtNotasm" type="text" name="notas" placeholder="Notas Adicionales">             
-              </div>
-            </div>
-          </div>
-        </li>
-        
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-               <div class="item-title item-label">Ubicación</div>
-               <div class="item-input-wrap">
-              <input id="txtUbicacionm" type="text" name="ubicacion" placeholder="Ubicación">       
-              </div>
-            </div>
-          </div>
-        </li>
-        <a   id="btnGuardarModificacionDonacion" class="col button button-fill button-round" >Guardar Cambios</a>
-        
-      </ul>
-        </div>
-          </div>
 
 
 
