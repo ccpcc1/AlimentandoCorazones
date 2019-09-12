@@ -4126,7 +4126,9 @@ html.device-full-viewport body {
     position: relative;
     z-index: 1;
     font-size: var(--f7-list-font-size);
+    padding-bottom: 28px;
     margin: var(--f7-list-margin-vertical) 0
+    
 }
 
 .list ul {
@@ -10458,7 +10460,7 @@ html.with-panel-right-cover .panel-right {
     margin-left: calc(var(--f7-card-expandable-margin-horizontal) + var(--f7-safe-area-left));
     margin-right: calc(var(--f7-card-expandable-margin-horizontal) + var(--f7-safe-area-right));
     margin-top: var(--f7-card-expandable-margin-vertical);
-    margin-bottom: var(--f7-card-expandable-margin-vertical);
+    margin-bottom: 3px;
     box-shadow: var(--f7-card-expandable-box-shadow);
     font-size: var(--f7-card-expandable-font-size)
 }

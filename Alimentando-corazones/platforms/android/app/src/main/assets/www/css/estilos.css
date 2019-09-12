@@ -1,4 +1,16 @@
-.ocultar{
+.ocultar
+{
 	display: none;
+}
+
+
+.botonesCards {
+    
+    margin-left: calc(var(--f7-card-expandable-margin-horizontal) + var(--f7-safe-area-left));
+    margin-right: calc(var(--f7-card-expandable-margin-horizontal) + var(--f7-safe-area-right));
+    margin-bottom: var(--f7-card-expandable-margin-vertical);
+    box-shadow: var(--f7-card-expandable-box-shadow);
+    font-size: var(--f7-card-expandable-font-size);
+    max-width: var(--f7-card-expandable-tablet-width);
 }
 
