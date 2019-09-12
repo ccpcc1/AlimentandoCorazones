@@ -97,9 +97,6 @@ modificarDonacionActual.className=" page animated slideInRight ";
 historiAlDonador.className=" ocultar ";	
 login.className=" ocultar";
 pedidosActualesDonador.className=" ocultar";
-<<<<<<< HEAD
-
-=======
 nuevaDonacion.className=" ocultar";
->>>>>>> develop
+
 }

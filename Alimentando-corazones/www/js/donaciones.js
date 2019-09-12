@@ -46,15 +46,10 @@ function visualizarDonacionxdonador(donacion,key)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        		</div>\
                        		</div>\
-<<<<<<< HEAD
-                       		<button onclick='EliminarDonations("+key+")'> Eliminar </button onclick='mostrarDonacionModificar("+donacion+","+key+")''> <button>Modificar</button>");        
+                       		<div class='card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
 }
 
-=======
-                       		<div class='card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
-  
-} 
->>>>>>> develop
+
 function visualizarDonacion(donacion)
 { 
         // funcion que mostrara los primeros detalles de la donador, direccion
@@ -133,18 +128,6 @@ function recargarDonations()
 
 function mostrarDonacionModificar(key)
 {
-<<<<<<< HEAD
-	var horario=donacion.Horario.split("-");
-		document.getElementById("txtUbicacionm").value=donacion.Dirección
-		document.getElementById("txtHorarioAtencionIniciom").value=horario[0];
-		document.getElementById("txtHorarioAtencionFinalm").value=horario[1];
-		document.getElementById("txtFechaCaducacionm").value=donacion.fechaCaducacion;
-		document.getElementById("txtContactom").value=donacion.telefono;
-		document.getElementById("txtNomProductom").value=donacion.productos[0].producto;
-		document.getElementById("txtCantidadProductom").value=donacion.productos[0].cantidad;
-				//unidad:document.getElementById(""),
-		document.getElementById("txtNotasm").value=	donacion.anotaciones;
-=======
 
     interfazModificarDonacionDonador();
     var currentDonation=consultaDonacionEspecifica(key);
@@ -157,7 +140,7 @@ function mostrarDonacionModificar(key)
 		document.getElementById("txtCantidadProductom").value=currentDonation.productos[0].cantidad;
 				//unidad:document.getElementById(""),
 		document.getElementById("txtNotasm").value=	currentDonation.anotaciones;
->>>>>>> develop
+		document.getElementById("modificarDonacionActual").value=key;
 
 }
 
@@ -173,24 +156,45 @@ function consultaDonacionEspecifica(key)
     return donacionModificando;
 }
 
-function modificarDonacion(donacion,key)
+function modificarDonacion()
 {
- /*
- refDonaciones.child(key).remove();-> eliminar
+	const KEY=document.getElementById("modificarDonacionActual").value;
+	var currentDonationModif=
+	{
+		Donador:LoginUSer.Empresa,
+		Correo:LoginUSer.correo,
+		Dirección:document.getElementById("txtUbicacionm").value,
+		Horario:document.getElementById("txtHorarioAtencionm").value,
+		fechaCaducacion:document.getElementById("txtFechaCaducacionm").value,
+		telefono:document.getElementById("txtContactom").value,
+		productos:
+		[
+			{
 
-firebase.database().refDonaciones.child(key).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-
- firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
- */
+				producto:document.getElementById("txtNomProductom").value,
+				cantidad:document.getElementById("txtCantidadProductom").value,
+				//unidad:document.getElementById(""),
+			}
+		],
+		anotaciones:document.getElementById("txtNotasm").value,	
+		Estado:"Disponible"	
+	}
+	console.log(KEY);
+ 	refDonaciones.child(KEY).update(currentDonationModif,function(error)
+ 	{
+  		if (error) 
+  		{
+    		alert("no se pudo actualizar la información " + error);
+  		} 
+  		else 
+  		{
+   		 	//mensaje actualizacion exitosa-> redireccionar al home
+   		 	console.log("guardo exitosamente");
+  		}
+	});
+  
 }
+
 
 function limpiarDonacionesDonador()
 {
