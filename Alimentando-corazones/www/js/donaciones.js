@@ -189,7 +189,8 @@ function modificarDonacion()
   		else 
   		{
    		 	//mensaje actualizacion exitosa-> redireccionar al home
-   		 	console.log("guardo exitosamente");
+   		 	alert("información exitosamente guardada ");
+   		 	interfazDonador();
   		}
 	});
   

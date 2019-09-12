@@ -44,7 +44,7 @@ login.className=" ocultar";
 nuevaDonacion.className=" ocultar ";
 menuBajoDonador.className=" toolbar toolbar-bottom animated slideInUp";
 modificarDonacionActual.className=" ocultar";	
-
+limpiarDonacionesDonador();
 consultarDonacionesDonador();
 }
 
