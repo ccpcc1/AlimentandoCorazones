@@ -1,13 +1,74 @@
 
 function consultarDonaciones()
 {
-    refDonaciones.on("child_added", function(snapshot, prevChildKey) 
-    {   
-    	var donacion = snapshot.val();
-        console.log(snapshot.val());
-        console.log(snapshot);
-        visualizarDonacion(donacion);
+
+	var key="";
+    var donacion="";
+    var noEstaVencido="";
+    refDonaciones.orderByChild('Estado').equalTo("Disponible").on("value", function(snapshot) 
+    {
+           
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+            key=data.key
+            noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
+            (noEstaVencido)?visualizarDonacion(donacion[key]):cambiarEstado("Vencido",key);
+        });
+        
     });
+}
+
+
+function cambiarEstado(estado,key)
+{
+  //utilizar update
+  refDonaciones.child(KEY).update({Estado:estado},function(error)
+ 	{
+  		if (error) 
+  		{
+    		console.log("no se cambiar el estado de la donacion " + error);
+  		} 
+  		else 
+  		{
+   		 	
+   		 	console.log("estado actualizado exitosamente");
+   		 	
+  		}
+	});
+}
+
+function estaReservada()
+{
+	var key="";
+    var donacion="";
+    var fechaActual= new Date();
+    refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
+    {
+        // mirar con una fecha individual que si ya pasaron 5 horas cambie el estado o acordar cuantas horas estaria reservado   
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+        	key=data.key
+        	var fechaReservacion=donacion[key].FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
+        	((fechaActual-fechaReservacion*3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+           
+            // 
+            //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
+            //(noEstaVencido)?visualizarDonacion(donacion[key]):console.log("cambiar estado a vencido a algo asi");
+        });
+        
+    });
+}
+
+function validarFechaVencimiento(fecha)
+{
+	var fechaDonacion= new Date(fecha);
+	fechaDonacion.setDate(fechaDonacion.getDate()+1);// siempre resetea los dias con uno menos
+	fechaDonacion.setHours(23);// para que las horas queden siempre a las 11 de la noche
+	const CURRENT_FECHA=new Date();
+	return (CURRENT_FECHA<=fechaDonacion);
+
 }
 
 function consultarDonacionesDonador()
@@ -47,8 +108,9 @@ function visualizarDonacionxdonador(donacion,key)
                        		</div>\
                        		</div>\
                        		<div class='card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
-  
-} 
+}
+
+
 function visualizarDonacion(donacion)
 { 
         // funcion que mostrara los primeros detalles de la donador, direccion
@@ -139,6 +201,7 @@ function mostrarDonacionModificar(key)
 		document.getElementById("txtCantidadProductom").value=currentDonation.productos[0].cantidad;
 				//unidad:document.getElementById(""),
 		document.getElementById("txtNotasm").value=	currentDonation.anotaciones;
+		document.getElementById("modificarDonacionActual").value=key;
 
 }
 
@@ -154,24 +217,46 @@ function consultaDonacionEspecifica(key)
     return donacionModificando;
 }
 
-function modificarDonacion(donacion,key)
+function modificarDonacion()
 {
- /*
- refDonaciones.child(key).remove();-> eliminar
+	const KEY=document.getElementById("modificarDonacionActual").value;
+	var currentDonationModif=
+	{
+		Donador:LoginUSer.Empresa,
+		Correo:LoginUSer.correo,
+		Dirección:document.getElementById("txtUbicacionm").value,
+		Horario:document.getElementById("txtHorarioAtencionm").value,
+		fechaCaducacion:document.getElementById("txtFechaCaducacionm").value,
+		telefono:document.getElementById("txtContactom").value,
+		productos:
+		[
+			{
 
-firebase.database().refDonaciones.child(key).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-
- firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
- */
+				producto:document.getElementById("txtNomProductom").value,
+				cantidad:document.getElementById("txtCantidadProductom").value,
+				//unidad:document.getElementById(""),
+			}
+		],
+		anotaciones:document.getElementById("txtNotasm").value,	
+		Estado:"Disponible"	
+	}
+	console.log(KEY);
+ 	refDonaciones.child(KEY).update(currentDonationModif,function(error)
+ 	{
+  		if (error) 
+  		{
+    		alert("no se pudo actualizar la información " + error);
+  		} 
+  		else 
+  		{
+   		 	//mensaje actualizacion exitosa-> redireccionar al home
+   		 	alert("información exitosamente guardada ");
+   		 	interfazDonador();
+  		}
+	});
+  
 }
+
 
 function limpiarDonacionesDonador()
 {
