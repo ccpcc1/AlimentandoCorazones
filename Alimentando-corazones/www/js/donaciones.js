@@ -13,7 +13,7 @@ function consultarDonaciones()
         {
             key=data.key
             noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
-            (noEstaVencido)?visualizarDonacion(donacion[key]):console.log("cambiar estado a vencido a algo asi");
+            (noEstaVencido)?visualizarDonacion(donacion[key]):cambiarEstado("Vencido",key);
         });
         
     });
@@ -50,8 +50,8 @@ function estaReservada()
         snapshot.forEach(function(data) 
         {
         	key=data.key
-        	var fechaReservacion=donacion[key].FechaReservacion;
-        	return((fechaActual-fechaReservacion*3600000)<=5); //*3600000 porque se da en limisegundos
+        	var fechaReservacion=donacion[key].FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
+        	((fechaActual-fechaReservacion*3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
             // 
             //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
