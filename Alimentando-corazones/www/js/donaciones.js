@@ -23,7 +23,7 @@ function consultarDonaciones()
 function cambiarEstado(estado,key)
 {
   //utilizar update
-  refDonaciones.child(KEY).update({Estado:estado},function(error)
+  refDonaciones.child(key).update({Estado:estado},function(error)
  	{
   		if (error) 
   		{
