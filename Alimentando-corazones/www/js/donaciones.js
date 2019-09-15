@@ -123,8 +123,9 @@ function visualizarDonacion(donacion)
         				<a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
         				</div>\
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
-                       		</div>\
-                     </div>");  
+                       	</div>\
+                     </div>\
+                     <div class='card-footer botonesCards card'><a  class='link'> Agregar a canasta </a> <a class='link'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
 
 
       
