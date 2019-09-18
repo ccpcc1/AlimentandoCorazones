@@ -139,7 +139,7 @@
               <form class="searchbar">
                 <div class="searchbar-inner">
                   <div class="searchbar-input-wrap">
-                    <input type="search" placeholder="Search">
+                    <input class="buscadorDonador"  type="search" placeholder="Search">
                     <i class="searchbar-icon"></i>
                     <span class="input-clear-button"></span>
                   </div>
@@ -212,7 +212,7 @@
               <div class="title">Donador</div>
               <a onclick="interfaznuevaDonacionDonador()"  id="btnAgregarDonacion" class="col button button-fill button-round" >Nueva donación</a>
               <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
-              <a onclick="interfazModificarDonacionDonador()"  id="btnModificarDonacion" class="col button button-fill button-round" >modificar</a>
+              
             </div>
 
               
@@ -385,7 +385,7 @@
             <div class="item-inner">
               <div class="item-title item-label">Fecha de Caducidad</div>
               <div class="item-input-wrap">
-                <input type="date" id="txtFechaCaducacion" name="fechaCaducacion" placeholder="Fecha de entrega" value="aaaa-mm-dd"/>
+                <input type="date" id="txtFechaCaducacion" name="fechaCaducacion" placeholder="Fecha de entrega" value="dd-mm-yyyy"/>
               </div>
             </div>
           </div>
@@ -420,7 +420,7 @@
 
           <!-- -------------------Modificar Donacion------------ -->
              
-    <div class="page ocultar" id="modificarDonacion">
+    <div class="page ocultar" id="modificarDonacionActual">
       <div class="login-screen-title">Modificar Donación</div>
     <div class="list no-hairlines-md">
       <ul>
@@ -471,7 +471,7 @@
             <div class="item-inner">
               <div class="item-title item-label">Fecha de Caducidad</div>
               <div class="item-input-wrap">
-                <input type="date" id="txtFechaCaducacionm" name="fechaCaducacion" placeholder="Fecha de entrega" value="aaaa-mm-dd"/>
+                <input type="date" id="txtFechaCaducacionm" name="fechaCaducacion" placeholder="Fecha de entrega" value="dd-mm-yyyy"/>
               </div>
             </div>
           </div>
@@ -498,14 +498,14 @@
             </div>
           </div>
         </li>
-        <a   id="btnGuardarModificacionDonacion" class="col button button-fill button-round" >Guardar Cambios</a>
+        <a   id="btnGuardarModificacionDonacion" class="col button button-fill button-round" onclick="modificarDonacion()" >Guardar Cambios</a>
         
       </ul>
         </div>
           </div>
 
 
-
+              
 
 
 

@@ -50,7 +50,7 @@ function estaReservada()
         snapshot.forEach(function(data) 
         {
         	key=data.key
-        	var fechaReservacion=donacion[key].FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
+        	var fechaReservacion=donacion[key].reservacion.FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
         	((fechaActual-fechaReservacion*3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
             // 
@@ -149,7 +149,7 @@ function CapturarDonacion()
 
 				producto:document.getElementById("txtNomProducto").value,
 				cantidad:document.getElementById("txtCantidadProducto").value,
-				//unidad:document.getElementById(""),
+				unidad:document.getElementById("txtUnidadesProducto").value,
 			}
 		],
 		anotaciones:document.getElementById("txtNotas").value,	
@@ -200,7 +200,7 @@ function mostrarDonacionModificar(key)
 		document.getElementById("txtContactom").value=currentDonation.telefono;
 		document.getElementById("txtNomProductom").value=currentDonation.productos[0].producto;
 		document.getElementById("txtCantidadProductom").value=currentDonation.productos[0].cantidad;
-				//unidad:document.getElementById(""),
+		document.getElementById("txtUnidadesProductoM").value=currentDonation.productos[0].unidad,
 		document.getElementById("txtNotasm").value=	currentDonation.anotaciones;
 		document.getElementById("modificarDonacionActual").value=key;
 
@@ -235,7 +235,7 @@ function modificarDonacion()
 
 				producto:document.getElementById("txtNomProductom").value,
 				cantidad:document.getElementById("txtCantidadProductom").value,
-				//unidad:document.getElementById(""),
+				unidad:document.getElementById("txtUnidadesProductoM").value
 			}
 		],
 		anotaciones:document.getElementById("txtNotasm").value,	
@@ -263,3 +263,47 @@ function limpiarDonacionesDonador()
 {
 	$("#DonationsContainerDonor").empty();
 }
+
+
+//
+/*
+refDonaciones.child("-LoVU_UOJ2sVl244UZmn").update(
+{
+    
+    Estado:"Reservado", 
+    reservacion:
+    {
+      CorreoReservacion:LoginUSer.correo,
+      FechaReservacion: new Date()
+    }
+    
+    
+  },
+  function(error)
+  {
+      if (error) 
+      {
+        console.log("no se cambiar el estado de la donacion " + error);
+      } 
+      else 
+      {
+        
+        console.log("estado actualizado exitosamente");
+        
+      }
+  });  
+
+var preuba="";
+refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
+    {
+           
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+            preuba=snapshot.val()[data.key]
+        });
+        
+    });
+
+    var fechaReservacion=new Date(preuba.reservacion.FechaReservacion);
+  */
