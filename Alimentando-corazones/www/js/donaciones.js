@@ -1,7 +1,7 @@
 
 function consultarDonaciones()
 {
-
+  estaReservada();
 	var key="";
     var donacion="";
     var noEstaVencido="";
@@ -13,7 +13,7 @@ function consultarDonaciones()
         {
             key=data.key
             noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
-            (noEstaVencido)?visualizarDonacion(donacion[key]):cambiarEstado("Vencido",key);
+            (noEstaVencido)?visualizarDonacion(donacion[key],key):cambiarEstado("Vencido",key);
         });
         
     });
@@ -23,7 +23,29 @@ function consultarDonaciones()
 function cambiarEstado(estado,key)
 {
   //utilizar update
-  refDonaciones.child(key).update({Estado:estado},function(error)
+  var donationChange="";
+  if(estado=="Disponible")
+  {
+    donationChange=
+    {
+      Estado:estado
+    }
+  }
+  else
+  {
+    donationChange=
+    {
+        Estado:estado, 
+        reservacion:
+        {
+          CorreoReservacion:"",
+          FechaReservacion: ""
+        }
+    }
+    
+  }
+  //
+  refDonaciones.child(key).update(donationChange,function(error)
  	{
   		if (error) 
   		{
@@ -51,7 +73,7 @@ function estaReservada()
         {
         	key=data.key
         	var fechaReservacion=donacion[key].reservacion.FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
-        	((fechaActual-fechaReservacion*3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+        	((fechaActual-fechaReservacion/3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
             // 
             //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
@@ -111,10 +133,9 @@ function visualizarDonacionxdonador(donacion,key)
 }
 
 
-function visualizarDonacion(donacion)
+function visualizarDonacion(donacion,key)
 { 
-        // funcion que mostrara los primeros detalles de la donador, direccion
-        //console.log(donacion);
+        key='"'+key+'"'; // toco fomatear la varaible con comillas
         $("#DonationsContainer").append("\
         				<div class='card card-expandable'>\
         				<div class='card-content'>\
@@ -125,7 +146,7 @@ function visualizarDonacion(donacion)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        	</div>\
                      </div>\
-                     <div class='card-footer botonesCards card'><a  class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
+                     <div class='card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
 
 
       
@@ -265,45 +286,49 @@ function limpiarDonacionesDonador()
 }
 
 
-//
-/*
-refDonaciones.child("-LoVU_UOJ2sVl244UZmn").update(
-{
-    
-    Estado:"Reservado", 
-    reservacion:
-    {
-      CorreoReservacion:LoginUSer.correo,
-      FechaReservacion: new Date()
-    }
-    
-    
-  },
-  function(error)
-  {
-      if (error) 
-      {
-        console.log("no se cambiar el estado de la donacion " + error);
-      } 
-      else 
-      {
-        
-        console.log("estado actualizado exitosamente");
-        
-      }
-  });  
 
-var preuba="";
-refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
+function solicitarDonacion(key)
+{
+    refDonaciones.child(key).update(
     {
-           
+    
+        Estado:"Reservado", 
+        reservacion:
+          {
+              CorreoReservacion:LoginUSer.correo,
+              FechaReservacion: new Date()
+          } 
+    },
+    function(error)
+    {
+        if (error) 
+        {
+          console.log("no se cambiar el estado de la donacion " + error);
+        } 
+        else 
+        {
+          console.log("estado actualizado exitosamente");
+        }
+    });  
+}
+
+function visualizarDonacionReservada()
+{
+  var donacion="";
+  refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
+    {
+          
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
-            preuba=snapshot.val()[data.key]
+          key=data.key
+          console.log(donacion[key]); 
+         
         });
         
     });
+}
 
-    var fechaReservacion=new Date(preuba.reservacion.FechaReservacion);
-  */
+/*
+
+*/
