@@ -312,21 +312,29 @@ function solicitarDonacion(key)
     });  
 }
 
+//no esta dando la funcion
 function visualizarDonacionReservada()
 {
   var donacion="";
   refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
-    {
+  {
           
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
           key=data.key
-          console.log(donacion[key]); 
-         
+          
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            
+            //donacion.push(snapshot.val());
+             console.log(donacion[key]);
+            //visualizar Reservaciones
+          }
+          
         });
         
-    });
+  });
 }
 
 /*
