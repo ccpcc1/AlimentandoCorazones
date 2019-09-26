@@ -73,7 +73,7 @@ function estaReservada()
         {
         	key=data.key
         	var fechaReservacion=donacion[key].reservacion.FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
-        	((fechaActual-fechaReservacion/3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+        	(((fechaActual-fechaReservacion)/3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
             // 
             //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
