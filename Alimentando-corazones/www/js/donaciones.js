@@ -73,7 +73,7 @@ function estaReservada()
         {
         	key=data.key
         	var fechaReservacion=donacion[key].reservacion.FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
-        	(((fechaActual-fechaReservacion)/3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+        	(((fechaActual-fechaReservacion)/3600000)<5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
             // 
             //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
@@ -95,8 +95,10 @@ function validarFechaVencimiento(fecha)
 
 function consultarDonacionesDonador()
 {
-	var key="";
+  estaReservada();
+    var key="";
     var donacion="";
+    var noEstaVencido="";
     refDonaciones.orderByChild('Correo').equalTo(LoginUSer.correo).on("value", function(snapshot) 
     {
            
@@ -105,7 +107,8 @@ function consultarDonacionesDonador()
         {
             key=data.key
             console.log(donacion[key]);
-            visualizarDonacionxdonador(donacion[key],key);
+            noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
+            (noEstaVencido)?visualizarDonacionxdonador(donacion[key],key):cambiarEstado("Vencido",key);
         });
         
     });
@@ -364,6 +367,8 @@ function limpiarPedidos()
 }
 
 
+/*historila beneficiario*/
+
 function historialVencidos()
 {
   refDonaciones.orderByChild('Estado').equalTo("Vencido").on("value", function(snapshot) 
@@ -447,5 +452,5 @@ function visualizarHistEntregados(donacion,key)
 }
 
 /*
-cardsPedidosActuales
+
 */
