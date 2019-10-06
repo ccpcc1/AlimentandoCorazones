@@ -18,3 +18,36 @@
 	margin-right: 5px;
 }
 
+.clasificacion{
+      direction: rtl;/* right to left */
+      unicode-bidi: bidi-override;/* bidi de bidireccional */
+  }
+
+.radiO{
+	display:none;
+} 
+
+.radiO:checked ~ label
+{
+color:orange;
+}
+
+
+.labEl
+{
+color:grey;
+font-size: 25px;
+}
+
+.labEl:hover
+{
+color:orange;
+}
+
+.labEl:hover ~ label
+{
+color:orange;
+}
+.marGen{
+ margin: -11px;
+}

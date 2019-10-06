@@ -162,11 +162,10 @@
                </div>
              </div>
              <div class="page-content">
-               <!-- Searchbar backdrop -->
-               <div class="searchbar-backdrop"></div>
-               <!-- hide-on-search element -->
+             
+               <div class="list searchbar-found">
 
-               <!-- search target list -->
+              <!-- -------------------Contenido------------ -->
                 <div class="card card-expandable">
                 <div class="card-content">
                   <div class="bg-color-yellow" style="height: 300px">
@@ -184,22 +183,61 @@
                   </div>
                 </div>
               </div>
-              <div class="card-footer botonesCards card"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>
-
-
-
-  
-
-
-
-
-
-
+               <div class="card-footer botonesCards card"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>
+            </div>
              </div>
            </div>
 
+          <!-- -------------------Mi canasta------------ -->
+           <div class="page ocultar" id="miCanasta">
+             <div class="navbar">
+               <div class="navbar-inner">
+                 <div class="title">Mi Canasta</div>
+               </div>
+             </div>
+             <div class="page-content">
+             
+              <div class="list searchbar-found">
 
+              <!-- -------------------Contenido------------ -->
 
+                <div class="card card-expandable">
+                <div class="card-content">
+                  <div class="bg-color-yellow" style="height: 300px">
+                    <div class="card-header text-color-black display-block">
+                      Framework7
+                      <br>
+                      <small style="opacity: 0.7">Build Mobile Apps</small>
+                    </div>
+                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
+                    </a>
+                  </div>
+                  <div class="card-content-padding">
+                    <p>Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working app prototype as soon as possible in case you need to.</p>
+      ...
+                  </div>
+                </div>
+              </div>
+             <div class="card-footer botonesCards card">
+              <form class="marGen">
+               <p class="clasificacion">
+                    <input id="radio1" type="radio" class="radiO" name="estrellas" value="5"><!--
+                 --><label class="labEl" for="radio1">★</label><!--
+                 --><input id="radio2" type="radio" class="radiO" name="estrellas" value="4"><!--
+                 --><label class="labEl" for="radio2">★</label><!--
+                 --><input id="radio3" type="radio" class="radiO" name="estrellas" value="3"><!--
+                 --><label class="labEl" for="radio3">★</label><!--
+                 --><input id="radio4" type="radio" class="radiO" name="estrellas" value="2"><!--
+                 --><label class="labEl" for="radio4">★</label><!--
+                 --><input id="radio5" type="radio" class="radiO" name="estrellas" value="1"><!--
+                 --><label class="labEl" for="radio5">★</label>
+               </p>
+             </form>
+             <a href="#" class="link">Cancelar</a>
+           </div>
+            </div>
+             </div>
+           </div>
 
 
 
@@ -553,7 +591,7 @@
           <div class="toolbar toolbar-bottom ocultar" id="menuBajo">
              <div class="toolbar-inner">
                     <!-- Toolbar links -->
-              <a href="#" class="link">MI CANASTA</a>
+              <a onclick="interfazMiCanasta()" class="link">MI CANASTA</a>
               <a onclick="interfazBeneficiario()" class="link">HOME</a>
               <a onclick="interfazHistorial()"  class="link">HISTORIAL</a>
             </div>

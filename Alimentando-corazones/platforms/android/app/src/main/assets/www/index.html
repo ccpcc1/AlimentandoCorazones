@@ -126,6 +126,7 @@
             <div class="navbar-inner">
               <div class="title">Beneficiario</div>
               <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
+
             </div>
 
           </div>
@@ -210,9 +211,13 @@
           <div class="navbar">
             <div class="navbar-inner">
               <div class="title">Donador</div>
-              <a onclick="interfaznuevaDonacionDonador()"  id="btnAgregarDonacion" class="col button button-fill button-round" >Nueva donación</a>
-              <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
               
+               <div class="block">
+                 <p class="segmented segmented-raised">
+                   <button onclick="interfaznuevaDonacionDonador()" id="btnAgregarDonacion" class="button">Nueva donación</button>
+                   <button onclick="logOut()" id="btnLogOut" class="button button-active">LogOut</button>
+                 </p>
+               </div>         
             </div>
 
               
@@ -337,7 +342,7 @@
             <div class="item-inner">
                <div class="item-title item-label">Descripción Del Producto</div>
               <div class="item-input-wrap">
-                <input id="txtNomProducto" type="text" name="descripcion" placeholder="Nombre del producto">
+                <input id="txtNomProducto" type="text" name="descripcion" placeholder="Nombre del producto" >
               </div>
             </div>
           </div>
@@ -347,7 +352,17 @@
             <div class="item-inner">
              <div class="item-title item-label">Cantidad Producto</div>
               <div class="item-input-wrap">
-              <input id="txtCantidadProducto" type="number" name="cantidad" placeholder="Cantidad en Kilos">    
+              <input id="txtCantidadProducto" type="number" name="cantidad" placeholder="Cantidad">    
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+             <div class="item-title item-label">Unidades del Producto</div>
+              <div class="item-input-wrap">
+              <input id="txtUnidadesProducto" type="text" name="cantidad" placeholder="ejem:litros,kilos">    
               </div>
             </div>
           </div>
@@ -439,7 +454,17 @@
             <div class="item-inner">
              <div class="item-title item-label">Cantidad Producto</div>
               <div class="item-input-wrap">
-              <input id="txtCantidadProductom" type="text" name="cantidad" placeholder="Cantidad en Kilos">    
+              <input id="txtCantidadProductom" type="text" name="cantidad" placeholder="Cantidad ">    
+              </div>
+            </div>
+          </div>
+        </li>
+         <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+             <div class="item-title item-label">Unidades del Producto</div>
+              <div class="item-input-wrap">
+              <input id="txtUnidadesProductoM" type="text" name="cantidad" placeholder="ejem:litros,kilos">    
               </div>
             </div>
           </div>

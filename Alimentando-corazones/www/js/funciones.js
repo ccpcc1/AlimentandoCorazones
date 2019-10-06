@@ -10,18 +10,27 @@ login.className=" animated slideInUp ";
 
 function interfazHistorial() {
 beneficiario.className=" ocultar";
-historiAl.className=" page animated slideInRight ";	
+historiAl.className=" page animated slideInRight ";
+miCanasta.className="ocultar";	
 }
 
 function interfazBeneficiario() {
 beneficiario.className=" page animated slideInUp";
-historiAl.className=" ocultar ";	
+historiAl.className=" ocultar ";
+miCanasta.className="ocultar";	
+}
+
+function interfazMiCanasta() {
+miCanasta.className=" page animated slideInLeft";
+historiAl.className=" ocultar ";
+beneficiario.className=" ocultar";	
 }
 
 function interfazBeneficiarioInicio() {
 beneficiario.className=" page animated slideInUp";
 menuBajo.className=" toolbar toolbar-bottom animated slideInUp";
 historiAl.className=" ocultar ";
+miCanasta.className="ocultar";
 login.className=" ocultar";	
  consultarDonaciones();
 }
