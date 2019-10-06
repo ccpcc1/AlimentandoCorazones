@@ -74,7 +74,9 @@ historiAlDonador.className=" ocultar ";
 pedidosActualesDonador.className=" page animated slideInLeft ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
-modificarDonacionActual.className=" ocultar";	
+modificarDonacionActual.className=" ocultar";
+limpiarPedidos();
+CapturarDonacionReservada();	
 }
 
 
