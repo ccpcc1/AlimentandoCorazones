@@ -60,7 +60,7 @@ function cambiarEstado(estado,key)
 	});
 }
 
-function estaReservada()
+/*function estaReservada()
 {
 	var key="";
     var donacion="";
@@ -86,7 +86,7 @@ function estaReservada()
         });
         
     });
-}
+}*/
 
 function validarFechaVencimiento(fecha)
 {
@@ -111,9 +111,16 @@ function consultarDonacionesDonador()
         snapshot.forEach(function(data) 
         {
             key=data.key
-            console.log(donacion[key]);
-            noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
-            (noEstaVencido)?visualizarDonacionxdonador(donacion[key],key):cambiarEstado("Vencido",key);
+            if (donacion[key].Estado=="Disponible")
+            {
+              console.log(donacion[key]);
+              noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
+              (noEstaVencido)?visualizarDonacionxdonador(donacion[key],key):cambiarEstado("Vencido",key);
+            }
+              
+              
+            
+            
         });
         
     });
