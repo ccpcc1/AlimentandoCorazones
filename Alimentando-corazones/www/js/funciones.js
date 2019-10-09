@@ -10,7 +10,9 @@ login.className=" animated slideInUp ";
 
 function interfazHistorial() {
 beneficiario.className=" ocultar";
-historiAl.className=" page animated slideInRight ";	
+historiAl.className=" page animated slideInRight ";
+LimpiarHistorial();
+historialEntregados();	
 }
 
 function interfazBeneficiario() {
