@@ -1,7 +1,7 @@
 
 function consultarDonaciones()
 {
-  estaReservada();
+  //estaReservada();
 	var key="";
     var donacion="";
     var noEstaVencido="";
@@ -73,7 +73,12 @@ function estaReservada()
         {
         	key=data.key
         	var fechaReservacion=donacion[key].reservacion.FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
-        	(((fechaActual-fechaReservacion)/3600000)<5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+        	var algo=fechaActual-fechaReservacion;
+          console.log(donacion[key].reservacion.FechaReservacion);
+
+
+
+          (((fechaActual-fechaReservacion)/3600000)>=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
             // 
             //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
@@ -95,7 +100,7 @@ function validarFechaVencimiento(fecha)
 
 function consultarDonacionesDonador()
 {
-  estaReservada();
+  //estaReservada();
     var key="";
     var donacion="";
     var noEstaVencido="";
@@ -155,6 +160,7 @@ function visualizarDonacion(donacion,key)
       
 }
 
+
 // a partir de aqui es la parte del crud del pefil Donador y demas que involucre dicho perfil
 
 function CapturarDonacion()
@@ -209,7 +215,6 @@ function recargarDonations()
 {
 	limpiarDonacionesDonador();
 	consultarDonacionesDonador();
-
 }
 
 function mostrarDonacionModificar(key)
@@ -438,7 +443,7 @@ function visualizarHistEntregados(donacion,key)
 {
   console.log(donacion.productos[0].producto);
   key='"'+key+'"'; // toco fomatear la varaible con comillas
-  $("#cardsHistVenc").append("\
+  $("#cardsHistEntr").append("\
       <div class='card card-expandable'>\
           <div class='card-content'>\
           <div class='bg-color-yellow' style='height: 300px'>\
@@ -451,6 +456,16 @@ function visualizarHistEntregados(donacion,key)
               "); 
 }
 
+function LimpiarHistorial()
+{
+  $("#cardsHistEntr").empty();
+  $("#cardsHistVenc").empty();
+}
+
+function LimpiarPerfilBeneficiario()
+{
+  $("#DonationsContainer").empty();
+}
 /*
 
 */
