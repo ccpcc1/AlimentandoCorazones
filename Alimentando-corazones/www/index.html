@@ -161,12 +161,13 @@
                  <div class="title">Historial</div>
                </div>
              </div>
-             <div class="page-content">
-             
-               <div class="list searchbar-found">
-
-              <!-- -------------------Contenido------------ -->
-                <div class="card card-expandable">
+             <div class="page-content list searchbar-found">
+               <!-- Searchbar backdrop -->
+               <div class="searchbar-backdrop"></div>
+               <!-- hide-on-search element -->
+               <div id="cardsHistBeneficiario" ></div>
+               <!-- search target list -->
+                <!--<div class="card card-expandable">
                 <div class="card-content">
                   <div class="bg-color-yellow" style="height: 300px">
                     <div class="card-header text-color-black display-block">
@@ -183,12 +184,21 @@
                   </div>
                 </div>
               </div>
-               <div class="card-footer botonesCards card"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>
-            </div>
+              <div class="card-footer botonesCards card"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>-->
+
+
+
+  
+
+
+
+
+
+
              </div>
            </div>
 
-          <!-- -------------------Mi canasta------------ -->
+<!-- -------------------Mi canasta------------ -->
            <div class="page ocultar" id="miCanasta">
              <div class="navbar">
                <div class="navbar-inner">
@@ -238,6 +248,7 @@
             </div>
              </div>
            </div>
+
 
 
 
@@ -294,14 +305,18 @@
                  <div class="title">Historial</div>
                </div>
              </div>
-             <div class="page-content">
+             <div class="page-content ">
                <!-- Searchbar backdrop -->
-               <div class="searchbar-backdrop"></div>
+                <div class="searchbar-backdrop"></div>
                <!-- hide-on-search element -->
-
+                <h1>Pedidos Entregados</h1>
+                <div id="cardsHistEntr"></div>
+                <h1>Pedidos vencidos</h1>
+                <div id="cardsHistVenc"></div>
                <!-- search target list -->
-                <div class="card card-expandable">
+                <!--<div class="card card-expandable">
                 <div class="card-content">
+
                   <div class="bg-color-yellow" style="height: 300px">
                     <div class="card-header text-color-black display-block">
                       Historial
@@ -318,7 +333,7 @@
       ...
                   </div>
                 </div>
-              </div>
+              </div>-->
 
 
 
@@ -339,7 +354,7 @@
                <!-- hide-on-search element -->
                <div id="cardsPedidosActuales"> </div>
                <!-- search target list -->
-                <div class="card card-expandable">
+                <!--<div class="card card-expandable">
                 <div class="card-content">
                   <div class="bg-color-yellow" style="height: 300px">
                     <div class="card-header text-color-black display-block">
@@ -356,7 +371,7 @@
       ...
                   </div>
                 </div>
-              </div>
+              </div>-->
 
 
 
@@ -612,5 +627,7 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
   <script src="js/donaciones.js"></script>
+  <script src="js/perfilBeneficiario.js"></script>
+
   </body>
 </html>

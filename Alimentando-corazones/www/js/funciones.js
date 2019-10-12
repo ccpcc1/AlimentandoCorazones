@@ -8,10 +8,13 @@ register.className=" ocultar";
 login.className=" animated slideInUp ";	
 }
 
+
 function interfazHistorial() {
 beneficiario.className=" ocultar";
 historiAl.className=" page animated slideInRight ";
 miCanasta.className="ocultar";	
+LimpiarHistorial();
+historialEntregados();	
 }
 
 function interfazBeneficiario() {
@@ -34,7 +37,6 @@ miCanasta.className="ocultar";
 login.className=" ocultar";	
  consultarDonaciones();
 }
-
 
 
 
@@ -74,7 +76,10 @@ pedidosActualesDonador.className=" ocultar";
 historiAlDonador.className=" page animated slideInRight ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
-modificarDonacionActual.className=" ocultar";	
+modificarDonacionActual.className=" ocultar";
+LimpiarHistorial();
+historialEntregados();
+historialVencidos();	
 }
 
 function interfazPedidosActualesDonador() {
