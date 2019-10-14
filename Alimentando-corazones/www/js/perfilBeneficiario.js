@@ -23,16 +23,16 @@ function visualizarDonacion(donacion,key)
 { 
         key='"'+key+'"'; // toco fomatear la varaible con comillas
         $("#DonationsContainer").append("\
-                        <div class='card card-expandable'>\
-                        <div class='card-content'>\
+                        <div  class='card card-expandable busquedaDisponibles'>\
+                        <div id="+donacion.productos[0].producto+" class='card-content'>\
                         <div class='bg-color-yellow' style='height: 300px'>\
-                        <div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+                        <div class='card-header text-color-black display-block'> PRODUCTO: <span>"+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+"</span> <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
                         <a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
                         </div>\
                         <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                         </div>\
                      </div>\
-                     <div class='card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
+                     <div class='busquedaDisponiblesBar card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
 
 
       

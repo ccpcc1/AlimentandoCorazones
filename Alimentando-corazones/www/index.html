@@ -135,20 +135,22 @@
 
 
           <!-- Scrollable page content -->
+        <div class="searchbar-backdrop"></div>
         <div class="page-content">
           <div class="block searchbar-hide-on-search ">
-              <form class="searchbar">
-                <div class="searchbar-inner">
-                  <div class="searchbar-input-wrap">
-                    <input class="buscadorDonador"  type="search" placeholder="Search">
-                    <i class="searchbar-icon"></i>
-                    <span class="input-clear-button"></span>
+             <form data-search-container=".virtual-list" data-search-item="li" data-search-in=".item-title" class="searchbar searchbar-init">
+                      <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                        <input type="search" id = "search" placeholder="Search"/>
+                        <i class="searchbar-icon"></i>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    <span class="searchbar-disable-button if-not-aurora">Cancel</span>
                   </div>
-                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-                </div>
               </form>
-          </div>             
-           <div class="list searchbar-found" id="DonationsContainer">
+          </div>
+             
+          <div class="list media-list searchbar-found" id="DonationsContainer">
 
                   
            </div>   
@@ -161,7 +163,7 @@
                  <div class="title">Historial</div>
                </div>
              </div>
-             <div class="page-content list searchbar-found">
+             <div class="page-content ">
                <!-- Searchbar backdrop -->
                <div class="searchbar-backdrop"></div>
                <!-- hide-on-search element -->
@@ -276,18 +278,18 @@
 
 
           <!-- Scrollable page content -->
+        <div class="searchbar-backdrop"></div>
         <div class="page-content">
           <div class="block searchbar-hide-on-search ">
-              <form class="searchbar">
-                <div class="searchbar-inner">
-                  <div class="searchbar-input-wrap">
-                    <input type="search" placeholder="Search">
-                    <i class="searchbar-icon"></i>
-                    <span class="input-clear-button"></span>
+             <form data-search-container=".virtual-list" data-search-item="li" data-search-in=".item-title" class="searchbar searchbar-init">
+                      <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                        <input type="search" id = "searchD" placeholder="Search"/>
+                        <i class="searchbar-icon"></i>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    <span class="searchbar-disable-button if-not-aurora">Cancel</span>
                   </div>
-                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-
-                </div>
               </form>
           </div>             
            <div class="list searchbar-found" id="DonationsContainerDonor">
@@ -628,6 +630,7 @@
   crossorigin="anonymous"></script>
   <script src="js/donaciones.js"></script>
   <script src="js/perfilBeneficiario.js"></script>
+  <script src="js/busqueda.js"></script>
 
   </body>
 </html>
