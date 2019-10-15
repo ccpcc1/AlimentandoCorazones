@@ -68,31 +68,54 @@ function solicitarDonacion(key)
 }
 
 
-function CapturarDonacionReservada()
+function CapturarDonacionReservadaBenef()
 {
   var donacion="";
   var key="";
   refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
   {
-          
+        console.log("paso por reservadas"); 
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
           key=data.key
-          
-          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+
+          if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
           {
             
             //donacion.push(snapshot.val());
             console.log(donacion[key]);
-            visualizarDonacionReservada(donacion[key],key);      
-            //visualizar Reservaciones
+            visualizarDonacionReservadaBenef(donacion[key],key); 
+      
+            
           }
           
         });
         
   });
 }
+
+
+function visualizarDonacionReservadaBenef(donacion,key)
+{ 
+
+        console.log(donacion.productos[0].producto);
+
+        key='"'+key+'"'; // toco fomatear la varaible con comillas
+        $("#cardsdonacionesReservadas").append("\
+                <div class='card card-expandable'>\
+                <div class='card-content'>\
+                <div class='bg-color-yellow' style='height: 300px'>\
+                <div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+                <a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
+                </div>\
+                <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
+                        </div>\
+                     </div>\
+                    ");      
+}
+
+
 
 function visualizarHistBeneficiario(donacion,key)
 {

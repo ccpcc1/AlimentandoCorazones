@@ -274,7 +274,31 @@ function limpiarDonacionesDonador()
 
 
 //no esta dando la funcion
-
+function CapturarDonacionReservada()
+{
+  var donacion="";
+  var key="";
+  refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
+  {
+      
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+          key=data.key
+          
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            
+            //donacion.push(snapshot.val());
+            console.log(donacion[key]);
+            visualizarDonacionReservada(donacion[key],key);      
+            
+          }
+          
+        });
+        
+  });
+}
 
 function visualizarDonacionReservada(donacion,key)
 { 
