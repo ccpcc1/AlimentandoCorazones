@@ -112,7 +112,24 @@ function visualizarDonacionReservadaBenef(donacion,key)
                 <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                         </div>\
                      </div>\
-                    ");      
+                <div class='card-footer botonesCards card'>\
+                  <form class='marGen'>\
+                    <p class='clasificacion'>\
+                        <input id='radio1' type='radio' class='radiO' name='estrellas' value='5'>\
+                        <label class='labEl' for='radio1'>★</label>\
+                        <input id='radio2' type='radio' class='radiO' name='estrellas' value='4'>\
+                        <label class='labEl' for='radio2'>★</label>\
+                        <input id='radio3' type='radio' class='radiO' name='estrellas' value='3'>\
+                        <label class='labEl' for='radio3'>★</label>\
+                        <input id='radio4' type='radio' class='radiO' name='estrellas' value='2'>\
+                        <label class='labEl' for='radio4'>★</label>\
+                        <input id='radio5' type='radio' class='radiO' name='estrellas' value='1'>\
+                        <label class='labEl' for='radio5'>★</label>\
+                    </p>\
+                  </form>\
+                  <a href='#'' class='link'>Cancelar</a>\
+                </div>\
+        ");      
 }
 
 
