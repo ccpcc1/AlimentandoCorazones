@@ -1,5 +1,6 @@
 function consultarDonaciones()
 {
+  limpiarDonacionesBeneficiario();
   estaReservada();
 	var key="";
     var donacion="";
@@ -108,4 +109,10 @@ function visualizarHistBeneficiario(donacion,key)
                   </div>\
                </div>\
               "); 
+}
+
+
+function limpiarDonacionesBeneficiario()
+{
+    $("#DonationsContainer").empty();
 }

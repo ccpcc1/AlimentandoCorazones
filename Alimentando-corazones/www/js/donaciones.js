@@ -428,6 +428,18 @@ function LimpiarPerfilBeneficiario()
 {
   $("#DonationsContainer").empty();
 }
+
+
+function calificarDonador(correoDonador,num_estrellas)
+{
+
+}
+
+function ActilizarcalificacionesDonaciones(correoDonador,num_estrellas)
+{
+    //consultar las donaciones que tenga el correo de usuario==user
+}
+
 /*
 
 */
