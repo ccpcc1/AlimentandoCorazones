@@ -114,7 +114,7 @@ function visualizarDonacionReservadaBenef(donacion,key)
                      </div>\
                 <div class='card-footer botonesCards card'>\
                   <form class='marGen'>\
-                    <p class='clasificacion'>\
+                    <p class='clasificacion '>\
                         <input id='radio1' type='radio' class='radiO' name='estrellas' value='5'>\
                         <label class='labEl' for='radio1'>★</label>\
                         <input id='radio2' type='radio' class='radiO' name='estrellas' value='4'>\
