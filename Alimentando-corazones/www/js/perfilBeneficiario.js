@@ -63,6 +63,8 @@ function solicitarDonacion(key)
         else 
         {
           console.log("estado actualizado exitosamente");
+          limpiarDonacionesBeneficiario();
+          consultarDonaciones();
         }
     });  
 }
@@ -155,4 +157,60 @@ function visualizarHistBeneficiario(donacion,key)
 function limpiarDonacionesBeneficiario()
 {
     $("#DonationsContainer").empty();
+}
+
+function capturarDonador(correoDonador)
+{
+  var key="";
+  var user="";
+  referencia.orderByChild('Correo').equalTo(correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
+  {
+        snapshot.forEach(function(data) 
+        {
+            key=data.key
+            user=snapshot.val()[key]     
+        });
+        
+  });
+  return user;
+}
+
+function calificarDonador(correoDonador,num_estrellas)
+{
+  var key="";
+  var user="";
+  referencia.orderByChild('Correo').equalTo(correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
+  {
+        snapshot.forEach(function(data) 
+        {
+            key=data.key
+            user=snapshot.val()[key]     
+        });
+        
+  });
+  if(key!=="")
+  {
+        refDonaciones.child(key).update(
+        {
+          calificacion:num_estrellas,
+          nocalificaciones:user.nocalificaciones+1
+        }
+          ,function(error)
+        {
+        if (error) 
+            {
+              alert("no se pudo actualizar la información " + error);
+            } 
+        else 
+            {
+              //mensaje actualizacion exitosa-> redireccionar al home
+              alert("información exitosamente guardada ");
+              interfazDonador();
+            }
+        });
+  }
+  else
+  {
+      // no se pudo calificar
+  }
 }
