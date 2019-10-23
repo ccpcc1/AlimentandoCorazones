@@ -27,7 +27,8 @@ function interfazMiCanasta() {
 miCanasta.className=" page animated slideInLeft";
 historiAl.className=" ocultar ";
 beneficiario.className=" ocultar";
-CapturarDonacionReservadaBenef();	
+CapturarDonacionReservadaBenef();
+CapturarDonacionEntregadoBenef();	
 }
 
 function interfazBeneficiarioInicio() {

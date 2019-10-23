@@ -382,7 +382,7 @@ function historialEntregados()
             
             //donacion.push(snapshot.val());
             console.log(donacion[key]);
-            visualizarHistEntregados(donacion[key],key);      
+            visualizarHistEntregadosDonador(donacion[key],key);      
             //visualizar Reservaciones
           }
           
@@ -391,11 +391,11 @@ function historialEntregados()
   });
 }
 
-function visualizarHistEntregados(donacion,key)
+function visualizarHistEntregadosDonador(donacion,key)
 {
   console.log(donacion.productos[0].producto);
   key='"'+key+'"'; // toco fomatear la varaible con comillas
-  $("#cardsHistEntr").append("\
+  $("#cardsHistorialEntregado").append("\
       <div class='card card-expandable'>\
           <div class='card-content'>\
           <div class='bg-color-yellow' style='height: 300px'>\
@@ -420,7 +420,7 @@ function historialEntregados()
         {
           key=data.key
           
-          if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
           {
             
             //donacion.push(snapshot.val());
