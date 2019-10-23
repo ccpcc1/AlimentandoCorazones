@@ -42,31 +42,37 @@ function visualizarDonacion(donacion,key)
 
 function solicitarDonacion(key)
 {
-  //realizar un metodo para limitar la reserva de donación.
-    //console.log("la fecha es"+FechaReservDonacion);
-    refDonaciones.child(key).update(
-    {
-    
-        Estado:"Reservado", 
-        reservacion:
-          {
-              CorreoReservacion:LoginUSer.correo,
-              FechaReservacion: new Date()
-          } 
-    },
-    function(error)
-    {
-        if (error) 
-        {
-          console.log("no se cambiar el estado de la donacion " + error);
-        } 
-        else 
-        {
+  var numeroDonaciones=numeroReservas();
+  console.log(numeroDonaciones);
+  if (numeroDonaciones<3)
+  {
+       refDonaciones.child(key).update(
+       {
+           Estado:"Reservado", 
+           reservacion:
+             {
+                 CorreoReservacion:LoginUSer.correo,
+                 FechaReservacion: new Date()
+             } 
+       },
+       function(error)
+       {
+           if (error) 
+           {
+             console.log("no se cambiar el estado de la donacion " + error);
+            } 
+            else 
+            {
           console.log("estado actualizado exitosamente");
-          limpiarDonacionesBeneficiario();
-          consultarDonaciones();
-        }
-    });  
+              limpiarDonacionesBeneficiario();
+              consultarDonaciones();
+            }
+        });
+  }
+  else
+  {
+    alert("Ya posees 3 donaciones en reserva");
+  }      
 }
 
 
@@ -100,7 +106,7 @@ function CapturarDonacionReservadaBenef()
 
 function visualizarDonacionReservadaBenef(donacion,key)
 { 
-
+      var correo="'"+donacion.Correo+"'";
         console.log(donacion.productos[0].producto);
 
         key='"'+key+'"'; // toco fomatear la varaible con comillas
@@ -114,7 +120,7 @@ function visualizarDonacionReservadaBenef(donacion,key)
                 <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                         </div>\
                      </div>\
-                <div class='card-footer botonesCards card'>\
+                <div class='card-footer botonesCards card '>\
                   <form class='marGen'>\
                     <p class='clasificacion '>\
                         <input id='radio1' type='radio' class='radiO' name='estrellas' value='5'>\
@@ -130,8 +136,7 @@ function visualizarDonacionReservadaBenef(donacion,key)
                     </p>\
                   </form>\
                   <a href='#'' class='link'>Cancelar</a>\
-                </div>\
-        ");      
+                  <div><h1>Marcar como:</h1><a class='link'>Recibido</a></div>");       
 }
 
 
@@ -157,6 +162,7 @@ function visualizarHistBeneficiario(donacion,key)
 function limpiarDonacionesBeneficiario()
 {
     $("#DonationsContainer").empty();
+    $("#cardsdonacionesReservadas").empty();   
 }
 
 function capturarDonador(correoDonador)
@@ -177,6 +183,8 @@ function capturarDonador(correoDonador)
 
 function calificarDonador(correoDonador,num_estrellas)
 {
+  console.log(correoDonador);
+  console.log(num_estrellas);
   var key="";
   var user="";
   referencia.orderByChild('Correo').equalTo(correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
@@ -188,6 +196,8 @@ function calificarDonador(correoDonador,num_estrellas)
         });
         
   });
+  
+  /*
   if(key!=="")
   {
         refDonaciones.child(key).update(
@@ -212,5 +222,32 @@ function calificarDonador(correoDonador,num_estrellas)
   else
   {
       // no se pudo calificar
-  }
+  }*/
+}
+
+
+function numeroReservas()
+{
+  var donacion="";
+  var key="";
+  var numDonaciones=0
+  refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
+  {
+        console.log("paso por reservadas"); 
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+          key=data.key
+
+          if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            numDonaciones+=1;
+            //donacion.push(snapshot.val());
+            console.log(donacion[key]);
+            visualizarDonacionReservadaBenef(donacion[key],key);   
+          }
+          
+        });     
+  });
+  return numDonaciones;
 }

@@ -54,22 +54,19 @@ function estaReservada()
         {
           //recordar que al traer la fechaReservacion esta en otra zona horaria, pero al parecer la tranforma internamente a la hora local
         	key=data.key
-        	var fechaReservacion= new  Date(donacion[key].reservacion.FechaReservacion); //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
-        	var algo=((fechaActual.getTime()-fechaReservacion.getTime()));
-          console.log(donacion[key]);
-          console.log("fecha resrvacion es: "+donacion[key].reservacion.FechaReservacion);
-          console.log("fecha actual es: "+fechaActual);
-          console.log("La resta es: "+algo/(1000*60*60));
-
-
-
-
-
-          //(((fechaActual-fechaReservacion)/3600000)>=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+        	 //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
+        	if(donacion[key].reservacion.hasOwnProperty("FechaReservacion"))
+            {
+              var fechaReservacion= new  Date(donacion[key].reservacion.FechaReservacion);
+              var algo=((fechaActual.getTime()-fechaReservacion.getTime()));
+              console.log(donacion[key]);
+              console.log("fecha resrvacion es: "+donacion[key].reservacion.FechaReservacion);
+              console.log("fecha actual es: "+fechaActual);
+              console.log("La resta es: "+algo/(1000*60*60));
+              (((fechaActual-fechaReservacion)/(1000*60*60))<5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
-            // 
-            //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
-            //(noEstaVencido)?visualizarDonacion(donacion[key]):console.log("cambiar estado a vencido a algo asi");
+            }
+          
         });
         
     });
@@ -131,7 +128,7 @@ function visualizarDonacionxdonador(donacion,key)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        		</div>\
                        		</div>\
-                       		<div class=' busquedaDonacionesBar card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
+                       		<div class=' busquedaDonacionesBar card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' > Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
 }
 
 
