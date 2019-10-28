@@ -150,6 +150,7 @@ function CapturarDonacionEntregadoBenef()
 
 function visualizarDonacionEntregadoBenef(donacion,key)
 { 
+        var KEY=key;
         key='"'+key+'"'; // toco fomatear la varaible con comillas
         $("#cardsdonacionesEntregadasBenef").append("\
                 <div class='card card-expandable'>\
@@ -181,8 +182,11 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                   document.getElementById('solicitud'+key).addEventListener("click",
                     function()
                     {
+
                         console.log("entro a recibido");
-                        cambiarEstado('Recibido',key);
+
+                        cambiarEstado('Recibido',KEY);
+                        limpiarDonacionesBeneficiario();
                     });
 }
 
