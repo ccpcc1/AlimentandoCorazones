@@ -277,7 +277,7 @@ function calificarDonador(correoDonador,num_estrellas)
              if(key!=="")
              {
 
-                  refDonaciones.child(key).update(
+                  referencia.child(key).update(
                   {
                     calificacion:calif,
                     nocalificaciones:noCalif
@@ -300,6 +300,7 @@ function calificarDonador(correoDonador,num_estrellas)
             console.log("no se pudo calificar");
                 // no se pudo calificar
             }
+            break;
         });
     });
 
