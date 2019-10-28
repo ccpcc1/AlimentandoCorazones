@@ -261,7 +261,8 @@ function calificarDonador(correoDonador,num_estrellas)
   var user="";
   var calif="";
   var noCalif=""
-      referencia.orderByChild('correo').equalTo(correoDonador).on("value", function(snapshot) 
+  var calificar=true;
+      referencia.orderByChild('correo').equalTo(correoDonador).limitToLast(1).on("value", function(snapshot) 
     {
            
         user=snapshot.val();
@@ -269,17 +270,19 @@ function calificarDonador(correoDonador,num_estrellas)
         {
             key=data.key;
             user=user[key];
-            calif=user.num_estrellas+num_estrellas;
+            calif=parseInt(user.num_estrellas)+num_estrellas;
+            console.log("num estrellas:"+ calif);
             noCalif=user.nocalificaciones+1;
             calif=calif/noCalif;
             console.log("estrellas:"+ calif);
-            console.log("noestrellas:"+noCalif);
-             if(key!=="")
+            console.log("noestrellas:"+noCalif);    
+        });
+         if(key!=="" && calificar)
              {
-
+                  calificar=false;
                   referencia.child(key).update(
                   {
-                    calificacion:calif,
+                    num_estrellas:calif,
                     nocalificaciones:noCalif
                   }
                     ,function(error)
@@ -300,9 +303,9 @@ function calificarDonador(correoDonador,num_estrellas)
             console.log("no se pudo calificar");
                 // no se pudo calificar
             }
-            break;
-        });
     });
+
+            
 
  
 }
