@@ -259,40 +259,51 @@ function calificarDonador(correoDonador,num_estrellas)
   console.log("calif: "+num_estrellas);
   var key="";
   var user="";
-  referencia.orderByChild('Correo').equalTo(correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
-  {
+  var calif="";
+  var noCalif=""
+      referencia.orderByChild('correo').equalTo(correoDonador).on("value", function(snapshot) 
+    {
+           
+        user=snapshot.val();
         snapshot.forEach(function(data) 
         {
-            key=data.key
-            user=snapshot.val()[key]     
-        });      
-  });
-  console.log("la key: "+key);
-  if(key!=="")
-  {
-        refDonaciones.child(key).update(
-        {
-          calificacion:num_estrellas,
-          nocalificaciones:user.nocalificaciones+1
-        }
-          ,function(error)
-        {
-        if (error) 
+            key=data.key;
+            user=user[key];
+            calif=user.num_estrellas+num_estrellas;
+            noCalif=user.nocalificaciones+1;
+            calif=calif/noCalif;
+            console.log("estrellas:"+ calif);
+            console.log("noestrellas:"+noCalif);
+             if(key!=="")
+             {
+
+                  refDonaciones.child(key).update(
+                  {
+                    calificacion:calif,
+                    nocalificaciones:noCalif
+                  }
+                    ,function(error)
+                  {
+                  if (error) 
+                      {
+                        alert("no se pudo actualizar la información " + error);
+                      } 
+                  else 
+                      {
+                        //mensaje actualizacion exitosa-> redireccionar al home
+                        alert("información exitosamente guardada ");
+                     }
+                  });
+            }
+            else
             {
-              alert("no se pudo actualizar la información " + error);
-            } 
-        else 
-            {
-              //mensaje actualizacion exitosa-> redireccionar al home
-              alert("información exitosamente guardada ");
-              interfazDonador();
+            console.log("no se pudo calificar");
+                // no se pudo calificar
             }
         });
-  }
-  else
-  {
-      // no se pudo calificar
-  }
+    });
+
+ 
 }
 
 
