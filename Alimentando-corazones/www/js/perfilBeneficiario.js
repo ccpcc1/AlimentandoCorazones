@@ -181,7 +181,7 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                   <div><h1>Marcar como:</h1><a id='solicitud"+key+"' class='link'>Recibido</a> <a id='calificar"+key+"' class='link'>calificar y marcar</a></div>");
                   document.getElementById('calificar'+key).addEventListener("click",function()
                   {
-                    obtenerCalificacion('estrellasBenef'+key);
+                    calificarDonador(donacion.Correo, obtenerCalificacion('estrellasBenef'+key));
                       
                   });      
                   document.getElementById('solicitud'+key).addEventListener("click",
@@ -238,25 +238,25 @@ function capturarDonador(correoDonador)
 
 function obtenerCalificacion(formulario)
 {
+  var i=0;
   var calificacion="";
   var containerFormulario=document.getElementById(formulario);
-  console.log(formulario);
-  console.log(containerFormulario);  
-  /*for (var i=3; i<20;i+4)
+  for (i=0;i<containerFormulario.children.length;i+=2)
   {
-      if(containerFormulario.childNodes[i].checked)
+      if(containerFormulario.children[i].checked)
       {
-          calificacion=containerFormulario.childNodes[i].value;
+          calificacion=containerFormulario.children[i].value;
           break;
       }
-  }*/
-  console.log("la calificacion: "+calificacion);
+  } 
+   return calificacion;
 }
+
 
 function calificarDonador(correoDonador,num_estrellas)
 {
   console.log(correoDonador);
-  console.log(num_estrellas);
+  console.log("calif: "+num_estrellas);
   var key="";
   var user="";
   referencia.orderByChild('Correo').equalTo(correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
@@ -265,11 +265,9 @@ function calificarDonador(correoDonador,num_estrellas)
         {
             key=data.key
             user=snapshot.val()[key]     
-        });
-        
+        });      
   });
-  
-  /*
+  console.log("la key: "+key);
   if(key!=="")
   {
         refDonaciones.child(key).update(
@@ -294,7 +292,7 @@ function calificarDonador(correoDonador,num_estrellas)
   else
   {
       // no se pudo calificar
-  }*/
+  }
 }
 
 
