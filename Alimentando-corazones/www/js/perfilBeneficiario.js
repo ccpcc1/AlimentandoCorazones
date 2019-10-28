@@ -164,21 +164,26 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                      </div>\
                 <div class='card-footer botonesCards card '>\
                   <form class='marGen'>\
-                    <p class='clasificacion '>\
-                        <input id='radio1' type='radio' class='radiO' name='estrellas' value='5 onclick='calificarDonador(5,5)'>\
+                    <p id='estrellasBenef"+key+"' class='clasificacion '>\
+                        <input id='radio1' type='radio' class='radiO' name='estrellas' value='5' '>\
                         <label class='labEl' for='radio1'>★</label>\
-                        <input id='radio2' type='radio' class='radiO' name='estrellas' value='4' onclick='calificarDonador(1,4)'>\
+                        <input id='radio2' type='radio' class='radiO' name='estrellas' value='4' '>\
                         <label class='labEl' for='radio2'>★</label>\
-                        <input id='radio3' type='radio' class='radiO' name='estrellas' value='3' onclick='calificarDonador(5,3)'>\
+                        <input id='radio3' type='radio' class='radiO' name='estrellas' value='3' '>\
                         <label class='labEl' for='radio3'>★</label>\
-                        <input id='radio4' type='radio' class='radiO' name='estrellas' value='2' onclick='calificarDonador(5,2)'>\
+                        <input id='radio4' type='radio' class='radiO' name='estrellas' value='2' '>\
                         <label class='labEl' for='radio4'>★</label>\
-                        <input id='radio5' type='radio' class='radiO' name='estrellas' value='1' onclick='calificarDonador(5,1)'>\
+                        <input id='radio5' type='radio' class='radiO' name='estrellas' value='1' >\
                         <label class='labEl' for='radio5'>★</label>\
                     </p>\
                   </form>\
                   <a href='#'' class='link'>Cancelar</a>\
-                  <div><h1>Marcar como:</h1><a id='solicitud"+key+"' class='link'>Recibido</a></div>");       
+                  <div><h1>Marcar como:</h1><a id='solicitud"+key+"' class='link'>Recibido</a> <a id='calificar"+key+"' class='link'>calificar y marcar</a></div>");
+                  document.getElementById('calificar'+key).addEventListener("click",function()
+                  {
+                    obtenerCalificacion('estrellasBenef'+key);
+                      
+                  });      
                   document.getElementById('solicitud'+key).addEventListener("click",
                     function()
                     {
@@ -231,14 +236,30 @@ function capturarDonador(correoDonador)
   return user;
 }
 
-function calificarDonador(calificacion)
+function obtenerCalificacion(formulario)
 {
-  // calificacion tiene : correoDonador,num_estrellas
-  console.log(calificacion.correoDonador);
-  console.log(calificacion.num_estrellas);
+  var calificacion="";
+  var containerFormulario=document.getElementById(formulario);
+  console.log(formulario);
+  console.log(containerFormulario);  
+  /*for (var i=3; i<20;i+4)
+  {
+      if(containerFormulario.childNodes[i].checked)
+      {
+          calificacion=containerFormulario.childNodes[i].value;
+          break;
+      }
+  }*/
+  console.log("la calificacion: "+calificacion);
+}
+
+function calificarDonador(correoDonador,num_estrellas)
+{
+  console.log(correoDonador);
+  console.log(num_estrellas);
   var key="";
   var user="";
-  referencia.orderByChild('Correo').equalTo(calificacion.correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
+  referencia.orderByChild('Correo').equalTo(correoDonador).on("value", function(snapshot) //recordar poner el limit (1)
   {
         snapshot.forEach(function(data) 
         {
@@ -253,7 +274,7 @@ function calificarDonador(calificacion)
   {
         refDonaciones.child(key).update(
         {
-          calificacion:calificacion.num_estrellas,
+          calificacion:num_estrellas,
           nocalificaciones:user.nocalificaciones+1
         }
           ,function(error)
