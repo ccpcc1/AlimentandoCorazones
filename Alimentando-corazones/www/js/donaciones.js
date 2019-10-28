@@ -314,14 +314,23 @@ function visualizarDonacionReservada(donacion,key)
                 <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                         </div>\
                      </div>\
-                    <div class=' busquedaDonacionesBar card-footer botonesCards card'><button class='col button button-fill color-green'>ENTREGADO</button> </div>");      
-}
+                    <div class=' busquedaDonacionesBar card-footer botonesCards card'><button id='Entregado"+key+"'  class='col button button-fill color-green'>ENTREGADO</button> </div>");      
+
+          document.getElementById('Entregado'+key).addEventListener("click",
+                    function()
+                    {
+                        console.log("entro a recibido");
+                        cambiarEstado('Recibido',key);
+                    });
+}       
+
 
 
 function limpiarPedidos()
 {
   $("#cardsPedidosActuales").empty();
 }
+
 
 
 /*historila beneficiario*/
