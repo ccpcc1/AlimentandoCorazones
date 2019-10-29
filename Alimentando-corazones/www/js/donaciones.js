@@ -240,6 +240,7 @@ function CapturarDonacionReservada()
   var key="";
   refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
   {   
+        limpiarPedidos();
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
@@ -277,6 +278,8 @@ function visualizarDonacionReservada(donacion,key)
                     {
                         console.log("entro a recibido");
                         cambiarEstado('Entregado',KEY);
+                        limpiarPedidos();
+                        CapturarDonacionReservada();
                     });
 }       
 
@@ -398,9 +401,10 @@ function visualizarHistRecibidosDonador(donacion,key)
 
 function LimpiarHistorial()
 {
-  $("#cardsHistEntr").empty();
   $("#cardsHistVenc").empty();
-  $("#cardsHistBeneficiario").empty();
+  $("#cardsHistorialEntregado").empty();
+  $("#cardsHistorialRecibido").empty();
+
   
 }
 

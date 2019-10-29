@@ -1,13 +1,12 @@
 function consultarDonaciones()
 {
-  limpiarDonacionesBeneficiario();
   estaReservada();
 	var key="";
     var donacion="";
     var noEstaVencido="";
     refDonaciones.orderByChild('Estado').equalTo("Disponible").on("value", function(snapshot) 
     {
-           
+        limpiarDonacionesBeneficiario();  
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
@@ -106,10 +105,10 @@ function CapturarDonacionReservadaBenef()
 
 function visualizarDonacionReservadaBenef(donacion,key)
 { 
-      var correo="'"+donacion.Correo+"'";
+        var correo="'"+donacion.Correo+"'";
         console.log(donacion.productos[0].producto);
-
-        key='"'+key+'"'; // toco fomatear la varaible con comillas
+        var KEY=key;
+        var key='"'+key+'"';
         $("#cardsdonacionesReservadas").append("\
                 <div class='card card-expandable'>\
                 <div class='card-content'>\
@@ -121,8 +120,16 @@ function visualizarDonacionReservadaBenef(donacion,key)
                         </div>\
                      </div>\
                 <div class='card-footer botonesCards card '>\
-                  <a href='#'' class='link'>Cancelar</a>\
-</div>");       
+                  <a href='#'' id='cancelarReserva"+key+"' class='link'>Cancelar</a>\
+          </div>");
+
+          document.getElementById('cancelarReserva'+key).addEventListener("click",
+                    function()
+                    {
+                        cambiarEstado('Disponible',KEY);
+                        $("#cardsdonacionesReservadas").empty();
+                        CapturarDonacionReservadaBenef();
+                    });       
 }
 
 
@@ -132,20 +139,15 @@ function CapturarDonacionEntregadoBenef()
   var key="";
   refDonaciones.orderByChild('Estado').equalTo("Entregado").on("value", function(snapshot) 
   {
-        console.log("paso por reservadas entregadas"); 
+        limpiarDonacionesEntregadas()
         donacion=snapshot.val();
-        console.log(donacion); 
-
         snapshot.forEach(function(data) 
         {
           key=data.key
-
-          if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)
           {
-            console.log(donacion[key]);
             visualizarDonacionEntregadoBenef(donacion[key],key);            
           }
-          
         });     
   });
 }
@@ -179,20 +181,25 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                         <label class='labEl' for='radio5'>★</label>\
                     </p>\
                   </form>\
-                  <a href='#'' class='link'>Cancelar</a>\
-                  <div><h1>Marcar como:</h1><a id='solicitud"+key+"' class='link'>Recibido</a> <a id='calificar"+key+"' class='link'>calificar y marcar</a></div>");
+                  <div><h1>Marcar como:</h1><a id='entregados"+key+"' class='link'>Recibido</a> <a id='calificar"+key+"' class='link'>calificar y marcar</a></div>");
                   document.getElementById('calificar'+key).addEventListener("click",function()
                   {
                     calificarDonador(donacion.Correo, obtenerCalificacion('estrellasBenef'+key));
                     cambiarEstado('Recibido',KEY);
+                    CapturarDonacionEntregadoBenef();
                       
                   });      
-                  document.getElementById('solicitud'+key).addEventListener("click",
+                  document.getElementById('entregados'+key).addEventListener("click",
                     function()
                     {
                         cambiarEstado('Recibido',KEY);
-                        limpiarDonacionesBeneficiario();
+                        CapturarDonacionEntregadoBenef();
                     });
+}
+
+function limpiarDonacionesEntregadas()
+{
+    $("#cardsdonacionesEntregadasBenef").empty();  
 }
 
 function CapturarHistBeneficiario()
@@ -201,14 +208,13 @@ function CapturarHistBeneficiario()
   var key="";
   refDonaciones.orderByChild('Estado').equalTo("Recibido").on("value", function(snapshot) 
   {
+        limpiarHistorialBenef();
         donacion=snapshot.val(); 
         snapshot.forEach(function(data) 
         {
-          key=data.key
-          console.log(donacion[key]);
+          key=data.key  
           if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
           {
-            console.log(donacion[key]);
             visualizarHistBeneficiario(donacion[key],key);            
           }
           
@@ -220,7 +226,7 @@ function visualizarHistBeneficiario(donacion,key)
 {
   console.log(donacion.productos[0].producto);
   key='"'+key+'"'; // toco fomatear la varaible con comillas
-  $("#cardsHistBeneficiario").append("\
+  $("#cardsHistorialBeneficiario").append("\
       <div class='card card-expandable'>\
           <div class='card-content'>\
           <div class='bg-color-yellow' style='height: 300px'>\
@@ -233,6 +239,10 @@ function visualizarHistBeneficiario(donacion,key)
               "); 
 }
 
+function limpiarHistorialBenef()
+{
+    $("#cardsHistorialBeneficiario").empty();
+}
 
 function limpiarDonacionesBeneficiario()
 {
