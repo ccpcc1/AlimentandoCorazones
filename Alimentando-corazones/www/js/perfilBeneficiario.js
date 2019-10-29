@@ -320,14 +320,9 @@ function calificarDonador(correoDonador,num_estrellas)
             key=data.key;
             user=user[key];
             calif=parseFloat(user.num_estrellas)
-             console.log("num estrellas:"+ calif);
             calif+=parseFloat(num_estrellas);
-            console.log("num estrellas:"+ calif);
             noCalif=user.nocalificaciones+1;
-            (noCalif==1)?(calif=calif/1):(calif=calif/2);
-            
-            console.log("estrellas:"+ calif);
-            console.log("noestrellas:"+noCalif);    
+            (noCalif<=1)?(calif=calif/1):(calif=calif/2);
         });
          if(key!=="" && calificar)
              {

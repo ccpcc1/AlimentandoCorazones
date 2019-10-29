@@ -66,7 +66,9 @@ var LoginUSer="";
                 referencia.push({
                     correo: email,
                     Empresa: txtNomEmpresa,
-                    tipoUsuario:txtTipousuario
+                    tipoUsuario:txtTipousuario,
+                    nocalificaciones:0,
+                    num_estrellas:0
                 }); 
                 alert("Registro exitoso");
                 limpiarCamposRegistro();
