@@ -120,8 +120,6 @@
              </form>
           <!-- -------------------perfil beneficiario------------ -->
           <div data-name="Beneficiario" class="page ocultar" id="beneficiario">
-
-          <!-- Top Navbar -->
           <div class="navbar">
             <div class="navbar-inner">
               <div class="title">Beneficiario</div>
@@ -209,6 +207,7 @@
                  <p class="segmented segmented-raised">
                    <button onclick="interfaznuevaDonacionDonador()" id="btnAgregarDonacion" class="button">Nueva donación</button>
                    <button onclick="logOut()" id="btnLogOut" class="button button-active">LogOut</button>
+                   <a onclick="interfazBuzonSugerencias()" id="btnBuzon" class="item-link list-button">Buzon de sugerencia</a>
                  </p>
                </div>         
             </div>
@@ -404,6 +403,27 @@
         </div>
           </div>
 
+          <!--buzon donador-->
+
+<div class="page ocultar" id="nuevaSugerencia">
+      <div class="login-screen-title">Crear Una sugerencia</div>
+    <div class="list no-hairlines-md">
+      <ul>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Descripción Del Producto</div>
+              <div class="item-input-wrap">
+                <input id="txtSugerencia" type="text" name="descripcion" placeholder="Sugerencia" >
+              </div>
+            </div>
+          </div>
+        </li>      
+        <a   id="btnGuardarSugerenciaa" class="col button button-fill button-round" onclick="capturarSugerencia()" >Crear Nueva Sugerencias</a>  
+      </ul>
+        </div>
+          </div>
+
           <!-- -------------------Modificar Donacion------------ -->
              
     <div class="page ocultar" id="modificarDonacionActual">
@@ -501,11 +521,6 @@
           </div>
 
 
-              
-
-
-
-
           </div>
         </div>
 
@@ -535,18 +550,18 @@
     <script type="text/javascript" src="js/framework7.bundle.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
-
-  <script src="js/Registro.js"></script>
-  <script src="js/funciones.js"></script>
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script src="js/donaciones.js"></script>
-  <script src="js/perfilBeneficiario.js"></script>
-  <script src="js/busqueda.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
+    <script src="js/Registro.js"></script>
+    <script src="js/funciones.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="js/donaciones.js"></script>
+    <script src="js/perfilBeneficiario.js"></script>
+    <script src="js/busqueda.js"></script>
+    <script src="js/sugerencias.js"></script>
 
   </body>
 </html>

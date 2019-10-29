@@ -135,20 +135,22 @@
 
 
           <!-- Scrollable page content -->
+        <div class="searchbar-backdrop"></div>
         <div class="page-content">
           <div class="block searchbar-hide-on-search ">
-              <form class="searchbar">
-                <div class="searchbar-inner">
-                  <div class="searchbar-input-wrap">
-                    <input class="buscadorDonador"  type="search" placeholder="Search">
-                    <i class="searchbar-icon"></i>
-                    <span class="input-clear-button"></span>
+             <form data-search-container=".virtual-list" data-search-item="li" data-search-in=".item-title" class="searchbar searchbar-init">
+                      <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                        <input type="search" id = "search" placeholder="Search"/>
+                        <i class="searchbar-icon"></i>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    <span class="searchbar-disable-button if-not-aurora">Cancel</span>
                   </div>
-                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-                </div>
               </form>
-          </div>             
-           <div class="list searchbar-found" id="DonationsContainer">
+          </div>
+             
+          <div class="list media-list searchbar-found" id="DonationsContainer">
 
                   
            </div>   
@@ -161,44 +163,35 @@
                  <div class="title">Historial</div>
                </div>
              </div>
-             <div class="page-content">
+             <div class="page-content ">
                <!-- Searchbar backdrop -->
                <div class="searchbar-backdrop"></div>
                <!-- hide-on-search element -->
-
-               <!-- search target list -->
-                <div class="card card-expandable">
-                <div class="card-content">
-                  <div class="bg-color-yellow" style="height: 300px">
-                    <div class="card-header text-color-black display-block">
-                      Framework7
-                      <br>
-                      <small style="opacity: 0.7">Build Mobile Apps</small>
-                    </div>
-                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
-                    </a>
-                  </div>
-                  <div class="card-content-padding">
-                    <p>Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working app prototype as soon as possible in case you need to.</p>
-      ...
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer botonesCards card"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>
-
-
-
-  
-
-
-
-
-
-
+               <div id="cardsHistorialBeneficiario" ></div>
              </div>
            </div>
 
+<!-- -------------------Mi canasta------------ -->
+           <div class="page ocultar" id="miCanasta">
+             <div class="navbar">
+               <div class="navbar-inner">
+                 <div class="title">Donaciones</div>
+               </div>
+             </div>
+             <div class="page-content">
+             
+              <div class="list searchbar-found">
 
+              <!-- -------------------Contenido------------ -->
+              <h1>Donaciones Reservadas</h1>
+                <div id="cardsdonacionesReservadas"> </div>
+
+              <h1>Donaciones Recibidas</h1>
+                <div id="cardsdonacionesEntregadasBenef"> </div>
+             
+            </div>
+             </div>
+           </div>
 
 
 
@@ -227,18 +220,18 @@
 
 
           <!-- Scrollable page content -->
+        <div class="searchbar-backdrop"></div>
         <div class="page-content">
           <div class="block searchbar-hide-on-search ">
-              <form class="searchbar">
-                <div class="searchbar-inner">
-                  <div class="searchbar-input-wrap">
-                    <input type="search" placeholder="Search">
-                    <i class="searchbar-icon"></i>
-                    <span class="input-clear-button"></span>
+             <form data-search-container=".virtual-list" data-search-item="li" data-search-in=".item-title" class="searchbar searchbar-init">
+                      <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                        <input type="search" id = "searchD" placeholder="Search"/>
+                        <i class="searchbar-icon"></i>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    <span class="searchbar-disable-button if-not-aurora">Cancel</span>
                   </div>
-                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-
-                </div>
               </form>
           </div>             
            <div class="list searchbar-found" id="DonationsContainerDonor">
@@ -253,37 +246,37 @@
            <div class="page ocultar" id="historiAlDonador">
              <div class="navbar">
                <div class="navbar-inner">
-                 <div class="title">Historial</div>
+                 <div class="title">PERFIL</div>
                </div>
              </div>
-             <div class="page-content">
+             <div class="page-content ">
                <!-- Searchbar backdrop -->
-               <div class="searchbar-backdrop"></div>
+                <div class="searchbar-backdrop"></div>
                <!-- hide-on-search element -->
+                <div class="card demo-facebook-card">
+                      <div class="card-header">
+                      
+                     <div class="demo-facebook-name">Mi calificación</div>
+                      
+                      </div>
+                      <div>
+                  <p><span data-progress="10" class="progressbar" id="demo-inline-progressbar"><span style="transform: translate3d(-90%, 0px, 0px);"></span></span></p>
 
-               <!-- search target list -->
-                <div class="card card-expandable">
-                <div class="card-content">
-                  <div class="bg-color-yellow" style="height: 300px">
-                    <div class="card-header text-color-black display-block">
-                      Historial
 
-                      <br>
-                      <small style="opacity: 0.7">Build Mobile Apps</small>
-                    </div>
-                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
-
-                    </a>
+                  <p class="segmented segmented-raised">
+                  <a href="#" data-progress="10" class="button">3.2</a>
+                  
+                  </p>
                   </div>
-                  <div class="card-content-padding">
-                    <p></p>
-      ...
-                  </div>
+                      
                 </div>
-              </div>
 
-
-
+                <h1>Pedidos Entregados</h1>
+                <div id="cardsHistorialRecibido"></div>
+                <h1>Donaciones en proceso</h1>
+                <div id="cardsHistorialEntregado"></div>
+                <h1>Donaciones vencidas</h1>
+                <div id="cardsHistVenc"></div>
              </div>
            </div>
 
@@ -297,31 +290,9 @@
              </div>
              <div class="page-content">
                <!-- Searchbar backdrop -->
-               <div class="searchbar-backdrop"></div>
+               <div class="searchbar-backdrop "></div>
                <!-- hide-on-search element -->
-
-               <!-- search target list -->
-                <div class="card card-expandable">
-                <div class="card-content">
-                  <div class="bg-color-yellow" style="height: 300px">
-                    <div class="card-header text-color-black display-block">
-                      Pedido 1
-                      <br>
-                      <small style="opacity: 0.7">Build Mobile Apps</small>
-                    </div>
-                    <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px">
-                      <a onclick="" id="btnCancelarPedidos" class="item-link list-button">Cancelar Pedido</a>
-                    </a>
-                  </div>
-                  <div class="card-content-padding">
-                    <p></p>
-      ...
-                  </div>
-                </div>
-              </div>
-
-
-
+               <div  class="list searchbar-found" id="cardsPedidosActuales"> </div>
              </div>
            </div>
 
@@ -542,9 +513,9 @@
              <div class="toolbar-inner">
                     <!-- Toolbar links -->
                     
-              <a onclick="interfazPedidosActualesDonador()" class="link">PEDIDOS</a>
+              <a onclick="interfazPedidosActualesDonador()" class="link">Donaciones</a>
               <a onclick="interfazDonador()" class="link">HOME</a>
-              <a onclick="interfazHistoriAlDonador()"  class="link">HISTORIAL</a>
+              <a onclick="interfazHistoriAlDonador()"  class="link">PERFIL</a>
             </div>
           </div>
 
@@ -553,7 +524,7 @@
           <div class="toolbar toolbar-bottom ocultar" id="menuBajo">
              <div class="toolbar-inner">
                     <!-- Toolbar links -->
-              <a href="#" class="link">MI CANASTA</a>
+              <a onclick="interfazMiCanasta()" class="link">Donaciones</a>
               <a onclick="interfazBeneficiario()" class="link">HOME</a>
               <a onclick="interfazHistorial()"  class="link">HISTORIAL</a>
             </div>
@@ -574,5 +545,8 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
   <script src="js/donaciones.js"></script>
+  <script src="js/perfilBeneficiario.js"></script>
+  <script src="js/busqueda.js"></script>
+
   </body>
 </html>

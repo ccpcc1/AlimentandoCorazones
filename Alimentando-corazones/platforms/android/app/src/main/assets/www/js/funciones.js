@@ -8,24 +8,37 @@ register.className=" ocultar";
 login.className=" animated slideInUp ";	
 }
 
+
 function interfazHistorial() {
 beneficiario.className=" ocultar";
-historiAl.className=" page animated slideInRight ";	
+historiAl.className=" page animated slideInRight ";
+miCanasta.className="ocultar";	
+LimpiarHistorial();
+CapturarHistBeneficiario();
 }
 
 function interfazBeneficiario() {
 beneficiario.className=" page animated slideInUp";
-historiAl.className=" ocultar ";	
+historiAl.className=" ocultar ";
+miCanasta.className="ocultar";	
+}
+
+function interfazMiCanasta() {
+miCanasta.className=" page animated slideInLeft";
+historiAl.className=" ocultar ";
+beneficiario.className=" ocultar";
+CapturarDonacionReservadaBenef();
+CapturarDonacionEntregadoBenef();	
 }
 
 function interfazBeneficiarioInicio() {
 beneficiario.className=" page animated slideInUp";
 menuBajo.className=" toolbar toolbar-bottom animated slideInUp";
 historiAl.className=" ocultar ";
+miCanasta.className="ocultar";
 login.className=" ocultar";	
  consultarDonaciones();
 }
-
 
 
 
@@ -65,7 +78,11 @@ pedidosActualesDonador.className=" ocultar";
 historiAlDonador.className=" page animated slideInRight ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
-modificarDonacionActual.className=" ocultar";	
+modificarDonacionActual.className=" ocultar";
+LimpiarHistorial();
+historialEntregados();
+historialVencidos();
+historialRecibidos();	
 }
 
 function interfazPedidosActualesDonador() {
@@ -74,7 +91,9 @@ historiAlDonador.className=" ocultar ";
 pedidosActualesDonador.className=" page animated slideInLeft ";	
 login.className=" ocultar";	
 nuevaDonacion.className=" ocultar ";
-modificarDonacionActual.className=" ocultar";	
+modificarDonacionActual.className=" ocultar";
+limpiarPedidos();
+CapturarDonacionReservada();	
 }
 
 

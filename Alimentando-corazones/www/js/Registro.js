@@ -13,6 +13,8 @@ firebase.initializeApp(firebaseConfig);
 var databaseService = firebase.database();
 var refDonaciones = databaseService.ref('Donaciones');
 var referencia = databaseService.ref('Users');
+var refSugerencias = databaseService.ref('Sugerencias');
+
 var LoginUSer="";
 (function() {
 

@@ -21,7 +21,6 @@ function consultarDonaciones()
 
 function visualizarDonacion(donacion,key)
 { 
-        var calificacion=parseInt(donacion.num_estrellas);
         key='"'+key+'"'; // toco fomatear la varaible con comillas
         $("#DonationsContainer").append("\
                         <div  class='card card-expandable busquedaDisponibles'>\
@@ -33,30 +32,11 @@ function visualizarDonacion(donacion,key)
                         <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                         </div>\
                      </div>\
-                     <div class='busquedaDisponiblesBar card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a>\
-                      <form class='marGen'>\
-                    <p class='clasificacion'>\
-                        <input id='radio1' type='radio' class='radiO EstrellaVisulizar estrella5"+key+"' name='estrellas' value='5' >\
-                        <label class='labEl' for='radio1'>★</label>\
-                        <input id='radio2' type='radio' class='radiO EstrellaVisulizar estrella4"+key+"' name='estrellas' value='4' >\
-                        <label class='labEl' for='radio2'>★</label>\
-                        <input id='radio3' type='radio' class='radiO EstrellaVisulizar estrella3"+key+"' name='estrellas' value='3' >\
-                        <label class='labEl' for='radio3'>★</label>\
-                        <input id='radio4' type='radio' class='radiO EstrellaVisulizar estrella2"+key+"' name='estrellas' value='2' >\
-                        <label class='labEl' for='radio4'>★</label>\
-                        <input id='radio5' type='radio' class='radiO EstrellaVisulizar estrella1"+key+"' name='estrellas' value='1' >\
-                        <label class='labEl' for='radio5'>★</label>\
-                    </p>\
-                  </form>\</div>");
-        console.log('estrella'+calificacion+key)
-                  if(calificacion>0)
-                  {
-                      for (var i =0;i<document.getElementsByClassName('estrella'+calificacion+key).length;i++)
-                      {
-                        document.getElementsByClassName('estrella'+calificacion+key)[i].checked=true;   
-                      }      
-                  }              
-  }
+                     <div class='busquedaDisponiblesBar card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
+
+
+      
+}
 
 
 function solicitarDonacion(key)
@@ -190,7 +170,7 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                     <p id='estrellasBenef"+key+"' class='clasificacion '>\
                         <input id='radio1' type='radio' class='radiO' name='estrellas' value='5'  '>\
                         <label class='labEl' for='radio1'>★</label>\
-                        <input id='radio2' type='radio' class='radiO' name='estrellas' value='4' '>\
+                        <input id='radio2' type='radio' class='radiO' name='estrellas' value='4' checked='true''>\
                         <label class='labEl' for='radio2'>★</label>\
                         <input id='radio3' type='radio' class='radiO' name='estrellas' value='3' '>\
                         <label class='labEl' for='radio3'>★</label>\

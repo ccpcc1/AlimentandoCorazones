@@ -1,13 +1,14 @@
-const firebaseConfig = {
-            apiKey: "AIzaSyCHYDqXyZHsMa8HBupwUiFEkDJBd0HzRts",
-            authDomain: "alimentandocorazones-c4f2c.firebaseapp.com",
-            databaseURL: "https://alimentandocorazones-c4f2c.firebaseio.com",
-            projectId: "alimentandocorazones-c4f2c",
-            storageBucket: "alimentandocorazones-c4f2c.appspot.com",
-            messagingSenderId: "717936080130",
-            appId: "1:717936080130:web:9c6bef3ca09ea718"
-          };
-        // Initialize Firebase
+const firebaseConfig = 
+{
+    apiKey: "AIzaSyCHYDqXyZHsMa8HBupwUiFEkDJBd0HzRts",
+    authDomain: "alimentandocorazones-c4f2c.firebaseapp.com",
+    databaseURL: "https://alimentandocorazones-c4f2c.firebaseio.com",
+    projectId: "alimentandocorazones-c4f2c",
+    storageBucket: "alimentandocorazones-c4f2c.appspot.com",
+    messagingSenderId: "717936080130",
+    appId: "1:717936080130:web:9c6bef3ca09ea718"
+};
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var databaseService = firebase.database();
 var refDonaciones = databaseService.ref('Donaciones');
@@ -157,24 +158,6 @@ function consultarUser(correo)
         ValidarTipoUsuario(user[key].tipoUsuario);
     });
 
-    /* metodo -> no es muy eficiente
-    referencia.on("child_added", function(snapshot, prevChildKey) {   
-    var Users = snapshot.val();
-    var user="";
-    if(Users.correo===correo)
-        {
-            user=snapshot.val();
-            LoginUSer=snapshot;
-            //LoginUSer.key -> lo necesito para modificar o algo por medio de la key
-            //user.val() -> obtener la data
-            console.log(user);
-            console.log("el tipo de usu es: "+user.tipoUsuario);
-            
-            ValidarTipoUsuario(user.tipoUsuario);
-            return 0;
-        }  
-  
-    });*/
 }
 
 function limpiarCamposRegistro()

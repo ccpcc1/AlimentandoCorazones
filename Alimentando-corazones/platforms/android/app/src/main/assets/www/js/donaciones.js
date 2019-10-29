@@ -1,50 +1,25 @@
-
-function consultarDonaciones()
-{
-  estaReservada();
-	var key="";
-    var donacion="";
-    var noEstaVencido="";
-    refDonaciones.orderByChild('Estado').equalTo("Disponible").on("value", function(snapshot) 
-    {
-           
-        donacion=snapshot.val();
-        snapshot.forEach(function(data) 
-        {
-            key=data.key
-            noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
-            (noEstaVencido)?visualizarDonacion(donacion[key],key):cambiarEstado("Vencido",key);
-        });
-        
-    });
-}
-
-
 function cambiarEstado(estado,key)
 {
-  //utilizar update
   var donationChange="";
   if(estado=="Disponible")
   {
     donationChange=
     {
-      Estado:estado
+      Estado:estado,
+      reservacion:
+        {
+          CorreoReservacion:"",
+          FechaReservacion: ""
+        }
     }
   }
   else
   {
     donationChange=
     {
-        Estado:estado, 
-        reservacion:
-        {
-          CorreoReservacion:"",
-          FechaReservacion: ""
-        }
-    }
-    
+        Estado:estado   
+    }  
   }
-  //
   refDonaciones.child(key).update(donationChange,function(error)
  	{
   		if (error) 
@@ -53,31 +28,36 @@ function cambiarEstado(estado,key)
   		} 
   		else 
   		{
-   		 	
-   		 	console.log("estado actualizado exitosamente");
-   		 	
+   		 	console.log("estado actualizado exitosamente");	
   		}
 	});
 }
 
 function estaReservada()
 {
-	var key="";
+	  var key="";
     var donacion="";
     var fechaActual= new Date();
     refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
-    {
-        // mirar con una fecha individual que si ya pasaron 5 horas cambie el estado o acordar cuantas horas estaria reservado   
+    {  
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
+          //recordar que al traer la fechaReservacion esta en otra zona horaria, pero al parecer la tranforma internamente a la hora local
         	key=data.key
-        	var fechaReservacion=donacion[key].reservacion.FechaReservacion; //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
-        	((fechaActual-fechaReservacion/3600000)<=5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
+        	 //recordar que esta fecha tiene que ser tomada con minutos y milisegundos
+        	if(donacion[key].reservacion.hasOwnProperty("FechaReservacion"))
+            {
+              var fechaReservacion= new  Date(donacion[key].reservacion.FechaReservacion);
+              var algo=((fechaActual.getTime()-fechaReservacion.getTime()));
+              console.log(donacion[key]);
+              console.log("fecha resrvacion es: "+donacion[key].reservacion.FechaReservacion);
+              console.log("fecha actual es: "+fechaActual);
+              console.log("La resta es: "+algo/(1000*60*60));
+              (((fechaActual-fechaReservacion)/(1000*60*60))<5)? "":cambiarEstado("Disponible",key); //*3600000 porque se da en limisegundos
            
-            // 
-            //noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
-            //(noEstaVencido)?visualizarDonacion(donacion[key]):console.log("cambiar estado a vencido a algo asi");
+            }
+          
         });
         
     });
@@ -90,13 +70,14 @@ function validarFechaVencimiento(fecha)
 	fechaDonacion.setHours(23);// para que las horas queden siempre a las 11 de la noche
 	const CURRENT_FECHA=new Date();
 	return (CURRENT_FECHA<=fechaDonacion);
-
 }
 
 function consultarDonacionesDonador()
 {
-	var key="";
+  estaReservada();
+    var key="";
     var donacion="";
+    var noEstaVencido="";
     refDonaciones.orderByChild('Correo').equalTo(LoginUSer.correo).on("value", function(snapshot) 
     {
            
@@ -104,12 +85,14 @@ function consultarDonacionesDonador()
         snapshot.forEach(function(data) 
         {
             key=data.key
-            console.log(donacion[key]);
-            visualizarDonacionxdonador(donacion[key],key);
-        });
-        
+            if (donacion[key].Estado==="Disponible")
+            {
+              console.log(donacion[key]);
+              noEstaVencido=validarFechaVencimiento(donacion[key].fechaCaducacion);
+              (noEstaVencido)?visualizarDonacionxdonador(donacion[key],key):cambiarEstado("Vencido",key);
+            }   
+        });        
     });
-
 }
 
 function visualizarDonacionxdonador(donacion,key)
@@ -120,8 +103,8 @@ function visualizarDonacionxdonador(donacion,key)
         console.log(donacionTemp);
         key='"'+key+'"'; // toco fomatear la varaible con comillas
         $("#DonationsContainerDonor").append("\
-        				<div class='card card-expandable'>\
-        				<div class='card-content'>\
+        				<div class='card card-expandable busquedaDonaciones'>\
+        				<div id="+donacion.productos[0].producto+" class='card-content '>\
         				<div class='bg-color-yellow' style='height: 300px'>\
         				<div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small>  </div>\
         				<a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
@@ -129,30 +112,9 @@ function visualizarDonacionxdonador(donacion,key)
         				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                        		</div>\
                        		</div>\
-                       		<div class='card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' class='link'> Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
+                       		<div class=' busquedaDonacionesBar card-footer botonesCards card'><a onclick='EliminarDonations("+key+")' > Eliminar </a> <a onclick='mostrarDonacionModificar("+key+")' class='link'>Modificar</a></div>");        
 }
 
-
-function visualizarDonacion(donacion,key)
-{ 
-        key='"'+key+'"'; // toco fomatear la varaible con comillas
-        $("#DonationsContainer").append("\
-        				<div class='card card-expandable'>\
-        				<div class='card-content'>\
-        				<div class='bg-color-yellow' style='height: 300px'>\
-        				<div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
-        				<a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
-        				</div>\
-        				<div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
-                       	</div>\
-                     </div>\
-                     <div class='card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a></div>");  
-
-
-      
-}
-
-// a partir de aqui es la parte del crud del pefil Donador y demas que involucre dicho perfil
 
 function CapturarDonacion()
 {
@@ -187,34 +149,26 @@ function CapturarDonacion()
 
 function ingresarDonacion(donacion)
 {
-	//console.log(donacion);
 	refDonaciones.push(donacion);
 }
-
-
 
 function EliminarDonations(key)
 {
 	console.log(key)
 	refDonaciones.child(key).remove();
 	recargarDonations();
-
 }
-
 
 function recargarDonations()
 {
 	limpiarDonacionesDonador();
 	consultarDonacionesDonador();
-
 }
 
 function mostrarDonacionModificar(key)
 {
-
     interfazModificarDonacionDonador();
     var currentDonation=consultaDonacionEspecifica(key);
-	//var horario=currentDonation.Horario.split("-");
 		document.getElementById("txtUbicacionm").value=currentDonation.Dirección
 		document.getElementById("txtHorarioAtencionm").value=currentDonation.Horario;
 		document.getElementById("txtFechaCaducacionm").value=currentDonation.fechaCaducacion;
@@ -224,12 +178,10 @@ function mostrarDonacionModificar(key)
 		document.getElementById("txtUnidadesProductoM").value=currentDonation.productos[0].unidad,
 		document.getElementById("txtNotasm").value=	currentDonation.anotaciones;
 		document.getElementById("modificarDonacionActual").value=key;
-
 }
 
 function consultaDonacionEspecifica(key)
 {
-
     var donacionModificando="";
     refDonaciones.child(key).on("value", function(snapshot) 
     {
@@ -253,7 +205,6 @@ function modificarDonacion()
 		productos:
 		[
 			{
-
 				producto:document.getElementById("txtNomProductom").value,
 				cantidad:document.getElementById("txtCantidadProductom").value,
 				unidad:document.getElementById("txtUnidadesProductoM").value
@@ -271,12 +222,10 @@ function modificarDonacion()
   		} 
   		else 
   		{
-   		 	//mensaje actualizacion exitosa-> redireccionar al home
    		 	alert("información exitosamente guardada ");
    		 	interfazDonador();
   		}
-	});
-  
+	});  
 }
 
 
@@ -285,48 +234,194 @@ function limpiarDonacionesDonador()
 	$("#DonationsContainerDonor").empty();
 }
 
-
-
-function solicitarDonacion(key)
-{
-    refDonaciones.child(key).update(
-    {
-    
-        Estado:"Reservado", 
-        reservacion:
-          {
-              CorreoReservacion:LoginUSer.correo,
-              FechaReservacion: new Date()
-          } 
-    },
-    function(error)
-    {
-        if (error) 
-        {
-          console.log("no se cambiar el estado de la donacion " + error);
-        } 
-        else 
-        {
-          console.log("estado actualizado exitosamente");
-        }
-    });  
-}
-
-function visualizarDonacionReservada()
+function CapturarDonacionReservada()
 {
   var donacion="";
+  var key="";
   refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
-    {
-          
+  {   
+        limpiarPedidos();
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
           key=data.key
-          console.log(donacion[key]); 
-         
+          
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            console.log(donacion[key]);
+            visualizarDonacionReservada(donacion[key],key);      
+          } 
+        }); 
+  });
+}
+
+function visualizarDonacionReservada(donacion,key)
+{ 
+        console.log(donacion.productos[0].producto);
+        var KEY=key;
+        var key='"'+key+'"';
+
+        $("#cardsPedidosActuales").append("\
+                <div class='card card-expandable'>\
+                <div class='card-content'>\
+                <div class='bg-color-yellow' style='height: 300px'>\
+                <div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+                <a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
+                </div>\
+                <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
+                        </div>\
+                     </div>\
+                    <div class=' busquedaDonacionesBar card-footer botonesCards card'><button id='Entregado"+key+"'  class='col button button-fill color-green'>ENTREGADO</button> </div>");      
+
+          document.getElementById('Entregado'+key).addEventListener("click",
+                    function()
+                    {
+                        console.log("entro a recibido");
+                        cambiarEstado('Entregado',KEY);
+                        limpiarPedidos();
+                        CapturarDonacionReservada();
+                    });
+}       
+
+function limpiarPedidos()
+{
+  $("#cardsPedidosActuales").empty();
+}
+
+function historialVencidos()
+{
+  refDonaciones.orderByChild('Estado').equalTo("Vencido").on("value", function(snapshot) 
+  {
+        var key=""; 
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+          key=data.key
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            console.log(donacion[key]);
+            visualizarHistvencidos(donacion[key],key);      
+          }
+        });        
+  });
+}
+
+function visualizarHistvencidos(donacion,key)
+{
+  console.log(donacion.productos[0].producto);
+  key='"'+key+'"'; // toco fomatear la varaible con comillas
+  $("#cardsHistVenc").append("\
+      <div class='card card-expandable'>\
+          <div class='card-content'>\
+          <div class='bg-color-yellow' style='height: 300px'>\
+          <div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+          <a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
+          </div>\
+          <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
+                  </div>\
+               </div>\
+              "); 
+}
+
+function historialEntregados()
+{
+  refDonaciones.orderByChild('Estado').equalTo("Entregado").on("value", function(snapshot) 
+  {
+        var key="";  
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+          key=data.key
+          
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            
+            //donacion.push(snapshot.val());
+            console.log(donacion[key]);
+            visualizarHistEntregadosDonador(donacion[key],key);      
+            //visualizar Reservaciones
+          }
+          
         });
         
-    });
+  });
+}
+
+function visualizarHistEntregadosDonador(donacion,key)
+{
+  console.log(donacion.productos[0].producto);
+  key='"'+key+'"'; // toco fomatear la varaible con comillas
+  $("#cardsHistorialEntregado").append("\
+      <div class='card card-expandable'>\
+          <div class='card-content'>\
+          <div class='bg-color-yellow' style='height: 300px'>\
+          <div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+          <a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
+          </div>\
+          <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
+                  </div>\
+               </div>\
+              "); 
+}
+
+function historialRecibidos()
+{
+  refDonaciones.orderByChild('Estado').equalTo("Recibido").on("value", function(snapshot) 
+  {
+        var key="";  
+        donacion=snapshot.val();
+        snapshot.forEach(function(data) 
+        {
+          key=data.key          
+          if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            console.log(donacion[key]);
+            visualizarHistRecibidosDonador(donacion[key],key);      
+          }
+        });        
+  });
+}
+
+function visualizarHistRecibidosDonador(donacion,key)
+{
+  console.log(donacion.productos[0].producto);
+  key='"'+key+'"'; // toco fomatear la varaible con comillas
+  $("#cardsHistorialRecibido").append("\
+      <div class='card card-expandable'>\
+          <div class='card-content'>\
+          <div class='bg-color-yellow' style='height: 300px'>\
+          <div class='card-header text-color-black display-block'> PRODUCTO: "+donacion.productos[0].cantidad+" "+donacion.productos[0].unidad+" de "+donacion.productos[0].producto+" <br> <small style='opacity: 0.7'>UBICACIÓN: "+donacion.Dirección+"</small> </div>\
+          <a href='#' class='link card-close card-opened-fade-in color-black' style='position: absolute; right: 15px; top: 15px'> </a>\
+          </div>\
+          <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.Correo+"<br> <strong>Empresa: </strong>"+donacion.Donador+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
+                  </div>\
+               </div>\
+              "); 
+}
+
+function LimpiarHistorial()
+{
+  $("#cardsHistVenc").empty();
+  $("#cardsHistorialEntregado").empty();
+  $("#cardsHistorialRecibido").empty();
+
+  
+}
+
+function LimpiarPerfilBeneficiario()
+{
+  $("#DonationsContainer").empty();
+}
+
+
+function calificarDonador(correoDonador,num_estrellas)
+{
+
+}
+
+function ActilizarcalificacionesDonaciones(correoDonador,num_estrellas)
+{
+    //consultar las donaciones que tenga el correo de usuario==user
 }
 
 /*
