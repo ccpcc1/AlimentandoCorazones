@@ -118,12 +118,31 @@
              </div>
 
              </form>
+             <div class="page ocultar" id="nuevaSugerenciaBenef">
+      <div class="login-screen-title">Crear Una sugerencia</div>
+    <div class="list no-hairlines-md">
+      <ul>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Descripción Del Producto</div>
+              <div class="item-input-wrap">
+                <input id="txtSugerencia" type="text" name="descripcion" placeholder="Sugerencia" >
+              </div>
+            </div>
+          </div>
+        </li>      
+        <a   id="btnGuardarSugerenciaa" class="col button button-fill button-round" onclick="capturarSugerencia()" >Crear Nueva Sugerencias</a>  
+      </ul>
+        </div>
+          </div>
           <!-- -------------------perfil beneficiario------------ -->
           <div data-name="Beneficiario" class="page ocultar" id="beneficiario">
           <div class="navbar">
             <div class="navbar-inner">
               <div class="title">Beneficiario</div>
               <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
+              <a onclick="interfazBuzonSugerenciasBenef()" id="btnBuzon" class="item-link list-button">Buzon de sugerencia</a>
 
             </div>
 
@@ -154,6 +173,8 @@
            </div>   
          </div>
         </div>
+
+
           <!-- -------------------Historial------------ -->
            <div class="page ocultar" id="historiAl">
              <div class="navbar">
@@ -270,7 +291,7 @@
                       
                 </div>
 
-                <h1>Pedidos Entregados</h1>
+                <h1>Donaciones Entregadas</h1>
                 <div id="cardsHistorialRecibido"></div>
                 <h1>Donaciones en proceso</h1>
                 <div id="cardsHistorialEntregado"></div>

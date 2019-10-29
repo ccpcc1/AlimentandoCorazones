@@ -12,7 +12,8 @@ login.className=" animated slideInUp ";
 function interfazHistorial() {
 beneficiario.className=" ocultar";
 historiAl.className=" page animated slideInRight ";
-miCanasta.className="ocultar";	
+miCanasta.className="ocultar";
+nuevaSugerenciaBenef.className="ocultar";	
 LimpiarHistorial();
 CapturarHistBeneficiario();
 }
@@ -20,13 +21,22 @@ CapturarHistBeneficiario();
 function interfazBeneficiario() {
 beneficiario.className=" page animated slideInUp";
 historiAl.className=" ocultar ";
-miCanasta.className="ocultar";	
+miCanasta.className="ocultar";
+nuevaSugerenciaBenef.className="ocultar";
+}
+
+function interfazBuzonSugerenciasBenef() {
+historiAl.className=" ocultar ";
+beneficiario.className=" ocultar";
+miCanasta.className="ocultar";
+nuevaSugerenciaBenef.className=" page animated slideInUp";
 }
 
 function interfazMiCanasta() {
 miCanasta.className=" page animated slideInLeft";
 historiAl.className=" ocultar ";
 beneficiario.className=" ocultar";
+nuevaSugerenciaBenef.className="ocultar";
 CapturarDonacionReservadaBenef();
 CapturarDonacionEntregadoBenef();	
 }
