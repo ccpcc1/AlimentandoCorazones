@@ -1,9 +1,5 @@
-
-
-
 function cambiarEstado(estado,key)
 {
-  //utilizar update
   var donationChange="";
   if(estado=="Disponible")
   {
@@ -21,12 +17,9 @@ function cambiarEstado(estado,key)
   {
     donationChange=
     {
-        Estado:estado 
-        
-    }
-    
+        Estado:estado   
+    }  
   }
-  //
   refDonaciones.child(key).update(donationChange,function(error)
  	{
   		if (error) 
@@ -35,9 +28,7 @@ function cambiarEstado(estado,key)
   		} 
   		else 
   		{
-   		 	
-   		 	console.log("estado actualizado exitosamente");
-   		 	
+   		 	console.log("estado actualizado exitosamente");	
   		}
 	});
 }
@@ -48,8 +39,7 @@ function estaReservada()
     var donacion="";
     var fechaActual= new Date();
     refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
-    {
-        // mirar con una fecha individual que si ya pasaron 5 horas cambie el estado o acordar cuantas horas estaria reservado   
+    {  
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
@@ -393,7 +383,7 @@ function visualizarHistRecibidosDonador(donacion,key)
 {
   console.log(donacion.productos[0].producto);
   key='"'+key+'"'; // toco fomatear la varaible con comillas
-  $("#cardsHistorialBeneficiario").append("\
+  $("#cardsHistorialRecibido").append("\
       <div class='card card-expandable'>\
           <div class='card-content'>\
           <div class='bg-color-yellow' style='height: 300px'>\

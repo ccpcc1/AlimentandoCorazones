@@ -81,7 +81,8 @@ nuevaDonacion.className=" ocultar ";
 modificarDonacionActual.className=" ocultar";
 LimpiarHistorial();
 historialEntregados();
-historialVencidos();	
+historialVencidos();
+historialRecibidos();	
 }
 
 function interfazPedidosActualesDonador() {
