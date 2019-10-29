@@ -81,7 +81,7 @@ function CapturarDonacionReservadaBenef()
   var key="";
   refDonaciones.orderByChild('Estado').equalTo("Reservado").on("value", function(snapshot) 
   {
-        console.log("paso por reservadas"); 
+        $("#cardsdonacionesReservadas").empty();
         donacion=snapshot.val();
         snapshot.forEach(function(data) 
         {
