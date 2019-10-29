@@ -14,7 +14,7 @@ beneficiario.className=" ocultar";
 historiAl.className=" page animated slideInRight ";
 miCanasta.className="ocultar";	
 LimpiarHistorial();
-historialEntregados();	
+CapturarHistBeneficiario();
 }
 
 function interfazBeneficiario() {

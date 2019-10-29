@@ -134,6 +134,8 @@ function CapturarDonacionEntregadoBenef()
   {
         console.log("paso por reservadas entregadas"); 
         donacion=snapshot.val();
+        console.log(donacion); 
+
         snapshot.forEach(function(data) 
         {
           key=data.key
@@ -182,19 +184,37 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                   document.getElementById('calificar'+key).addEventListener("click",function()
                   {
                     calificarDonador(donacion.Correo, obtenerCalificacion('estrellasBenef'+key));
+                    cambiarEstado('Recibido',KEY);
                       
                   });      
                   document.getElementById('solicitud'+key).addEventListener("click",
                     function()
                     {
-
-                        console.log("entro a recibido");
-
                         cambiarEstado('Recibido',KEY);
                         limpiarDonacionesBeneficiario();
                     });
 }
 
+function CapturarHistBeneficiario()
+{
+  var donacion="";
+  var key="";
+  refDonaciones.orderByChild('Estado').equalTo("Recibido").on("value", function(snapshot) 
+  {
+        donacion=snapshot.val(); 
+        snapshot.forEach(function(data) 
+        {
+          key=data.key
+          console.log(donacion[key]);
+          if(donacion[key].reservacion.CorreoReservacion===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
+          {
+            console.log(donacion[key]);
+            visualizarHistBeneficiario(donacion[key],key);            
+          }
+          
+        });     
+  });
+}
 
 function visualizarHistBeneficiario(donacion,key)
 {
@@ -275,7 +295,8 @@ function calificarDonador(correoDonador,num_estrellas)
             calif+=parseFloat(num_estrellas);
             console.log("num estrellas:"+ calif);
             noCalif=user.nocalificaciones+1;
-            calif=calif/2;
+            (noCalif==1)?(calif=calif/1):(calif=calif/2);
+            
             console.log("estrellas:"+ calif);
             console.log("noestrellas:"+noCalif);    
         });
