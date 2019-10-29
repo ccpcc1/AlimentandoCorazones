@@ -19712,7 +19712,7 @@ button.swiper-pagination-bullet {
     pointer-events: none;
     cursor: auto;
     height: 10px;
-    background: var(--f7-menu-bg-color);
+    background: rgb(15, 129, 253);
     position: relative
 }
 
@@ -19723,7 +19723,7 @@ button.swiper-pagination-bullet {
     padding-top: var(--f7-menu-dropdown-padding-vertical);
     padding-bottom: var(--f7-menu-dropdown-padding-vertical);
     box-sizing: border-box;
-    background: var(--f7-menu-bg-color);
+    background: rgb(15, 129, 253);
     will-change: scroll-position;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
