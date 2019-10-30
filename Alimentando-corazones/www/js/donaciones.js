@@ -137,7 +137,8 @@ function CapturarDonacion()
 		],
 		anotaciones:document.getElementById("txtNotas").value,	
 		Estado:"Disponible",
-    num_estrellas:0
+    num_estrellas:0,
+    nocalificaciones:0
 
 	}
 	console.log(donacion);
@@ -416,7 +417,10 @@ function LimpiarPerfilBeneficiario()
 }
 
 
-
+function pintarCalificacionDonador()
+{
+  document.getElementById("barCalificacion").innerText=LoginUSer.num_estrellas;
+}
 
 /*
 

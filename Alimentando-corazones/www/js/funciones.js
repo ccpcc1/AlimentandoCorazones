@@ -94,6 +94,7 @@ nuevaSugerencia.className="ocultar";
 
 
 function interfazHistoriAlDonador() {
+pintarCalificacionDonador();
 donador.className=" ocultar";
 pedidosActualesDonador.className=" ocultar";
 historiAlDonador.className=" page animated slideInRight ";	

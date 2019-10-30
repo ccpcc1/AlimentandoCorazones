@@ -322,7 +322,7 @@ function calificarDonador(correoDonador,num_estrellas)
             calif=parseFloat(user.num_estrellas)
             calif+=parseFloat(num_estrellas);
             noCalif=user.nocalificaciones+1;
-            (noCalif<=1)?(calif=calif/1):(calif=calif/2);
+            (noCalif==1)?(calif=calif/1):(calif=calif/2);
         });
          if(key!=="" && calificar)
              {
@@ -340,7 +340,6 @@ function calificarDonador(correoDonador,num_estrellas)
                       } 
                   else 
                       {
-                        //mensaje actualizacion exitosa-> redireccionar al home
                         alert("información exitosamente guardada ");
                      }
                   });
@@ -348,7 +347,6 @@ function calificarDonador(correoDonador,num_estrellas)
             else
             {
             console.log("no se pudo calificar");
-                // no se pudo calificar
             }
     });
 
