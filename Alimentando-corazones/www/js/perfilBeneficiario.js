@@ -33,7 +33,7 @@ function visualizarDonacion(donacion,key)
                         <div class='card-content-padding'> <strong>Correo donador: </strong>"+donacion.email+"<br> <strong>Empresa: </strong>"+donacion.Empresa+" <br> <strong>Horario de atencion: </strong>"+donacion.Horario+" <br> <strong>fechaCaducacion: </strong>"+donacion.fechaCaducacion+" <br> <strong> Contacto: </strong>"+donacion.telefono+" <br> <strong>anotaciones: </strong>"+donacion.anotaciones+" </div>\
                         </div>\
                      </div>\
-                     <div class='busquedaDisponiblesBar card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Agregar a canasta </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a>\
+                     <div class='busquedaDisponiblesBar card-footer botonesCards card'><a onclick='solicitarDonacion("+key+")' class='link'> Reservar Donación </a> <a href='https://api.whatsapp.com/send?phone=57"+donacion.telefono+"' class='link external'><img class='whatsapp' src='img/whatsapp.png'>whatsapp</a>\
                       <form class='marGen'>\
                     <p class='clasificacion'>\
                         <input id='radio1' type='radio' class='radiO EstrellaVisulizar estrella5"+key+"' name='estrellas' value='5' >\
@@ -200,7 +200,7 @@ function visualizarDonacionEntregadoBenef(donacion,key)
                         <label class='labEl' for='radio5'>★</label>\
                     </p>\
                   </form>\
-                  <div><h1>Marcar como:</h1><a id='entregados"+key+"' class='link'>Recibido</a> <a id='calificar"+key+"' class='link'>calificar y marcar</a></div>");
+                  <div><h1>Marcar como:</h1><a id='entregados"+key+"' class='col button button-fill color-gray'>Recibido</a> <p> <a id='calificar"+key+"' class='col button button-fill color-gray'>calificar y marcar</a></div>");
                   document.getElementById('calificar'+key).addEventListener("click",function()
                   {
                     calificarDonador(donacion.Correo, obtenerCalificacion('estrellasBenef'+key));
