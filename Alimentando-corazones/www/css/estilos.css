@@ -3,7 +3,9 @@
 	display: none;
 }
 
-
+.tamlogo{
+  width: 121px;
+}
 .botonesCards {
     
     margin-left: calc(var(--f7-card-expandable-margin-horizontal) + var(--f7-safe-area-left));
