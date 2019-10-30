@@ -143,12 +143,26 @@
           <div class="navbar">
             <div class="navbar-inner">
               <div class="title">Beneficiario</div>
-              <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
-              <a onclick="interfazBuzonSugerenciasBenef()" id="btnBuzon" class="item-link list-button">Buzon de sugerencia</a>
+              
 
             </div>
 
           </div>
+
+ 
+        <div class="menu hamburguesa">
+                      <div class="menu-inner">
+                            <div class="menu-item menu-item-dropdown">
+                          <div class="menu-item-content">...</div>
+                          <div class="menu-dropdown menu-dropdown-right">
+                            <div class="menu-dropdown-content" style="height: 200px">
+                              <a onclick="interfazBuzonSugerenciasBenef()" id="btnBuzon" class="menu-dropdown-link menu-close">sugerencias</a>
+                              <a onclick="logOut()" id="btnLogOut" class="menu-dropdown-link menu-close">LogOut</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
           <!-- Bottom Toolbar -->
 
@@ -227,17 +241,28 @@
               <div class="title">Donador</div>
               
                <div class="block">
-                 <p class="segmented segmented-raised">
-                   <button onclick="interfaznuevaDonacionDonador()" id="btnAgregarDonacion" class="button">Nueva donación</button>
-                   <button onclick="interfazBuzonSugerencias()" id="btnBuzon" class="button">Buzon de sugerencia</button>
-                   <button onclick="logOut()" id="btnLogOut" class="button button-active">LogOut</button>
-                   
-                 </p>
+
                </div>         
             </div>
 
               
           </div>
+
+
+                  <div class="menu hamburguesa">
+                      <div class="menu-inner">
+                            <div class="menu-item menu-item-dropdown">
+                          <div class="menu-item-content">...</div>
+                          <div class="menu-dropdown menu-dropdown-right">
+                            <div class="menu-dropdown-content" style="height: 200px">
+                              <a onclick="interfaznuevaDonacionDonador()" id="btnAgregarDonacion" class="menu-dropdown-link menu-close">Nueva Donación</a>
+                              <a onclick="interfazBuzonSugerencias()" id="btnBuzon" class="menu-dropdown-link menu-close">Sugerencias</a>
+                              <a onclick="logOut()" id="btnLogOut" class="menu-dropdown-link menu-close">LogOut</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
           <!-- Bottom Toolbar -->
 
