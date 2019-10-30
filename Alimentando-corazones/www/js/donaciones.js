@@ -251,7 +251,6 @@ function CapturarDonacionReservada()
           
           if(donacion[key].Correo===LoginUSer.correo)//cambiar por donacion[key].reservacion.CorreoReservacion
           {
-            console.log(donacion[key]);
             visualizarDonacionReservada(donacion[key],key);      
           } 
         }); 
