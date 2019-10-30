@@ -137,7 +137,7 @@ function CapturarDonacion()
 		],
 		anotaciones:document.getElementById("txtNotas").value,	
 		Estado:"Disponible",
-    num_estrellas:0,
+    num_estrellas:LoginUSer.num_estrellas,
     nocalificaciones:0
 
 	}

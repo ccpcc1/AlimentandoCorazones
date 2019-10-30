@@ -136,7 +136,10 @@ function CapturarDonacion()
 			}
 		],
 		anotaciones:document.getElementById("txtNotas").value,	
-		Estado:"Disponible"	
+		Estado:"Disponible",
+    num_estrellas:0,
+    nocalificaciones:0
+
 	}
 	console.log(donacion);
 	ingresarDonacion(donacion);	
@@ -414,14 +417,9 @@ function LimpiarPerfilBeneficiario()
 }
 
 
-function calificarDonador(correoDonador,num_estrellas)
+function pintarCalificacionDonador()
 {
-
-}
-
-function ActilizarcalificacionesDonaciones(correoDonador,num_estrellas)
-{
-    //consultar las donaciones que tenga el correo de usuario==user
+  document.getElementById("barCalificacion").innerText=LoginUSer.num_estrellas;
 }
 
 /*

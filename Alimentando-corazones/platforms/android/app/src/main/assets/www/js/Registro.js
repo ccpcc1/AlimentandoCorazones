@@ -13,6 +13,8 @@ firebase.initializeApp(firebaseConfig);
 var databaseService = firebase.database();
 var refDonaciones = databaseService.ref('Donaciones');
 var referencia = databaseService.ref('Users');
+var refSugerencias = databaseService.ref('Sugerencias');
+
 var LoginUSer="";
 (function() {
 
@@ -64,7 +66,9 @@ var LoginUSer="";
                 referencia.push({
                     correo: email,
                     Empresa: txtNomEmpresa,
-                    tipoUsuario:txtTipousuario
+                    tipoUsuario:txtTipousuario,
+                    nocalificaciones:0,
+                    num_estrellas:0
                 }); 
                 alert("Registro exitoso");
                 limpiarCamposRegistro();

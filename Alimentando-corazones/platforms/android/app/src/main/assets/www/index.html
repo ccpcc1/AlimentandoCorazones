@@ -118,14 +118,33 @@
              </div>
 
              </form>
+             <div class="page ocultar" id="nuevaSugerenciaBenef">
+      <div class="login-screen-title">Crear Una sugerencia</div>
+    <div class="list no-hairlines-md">
+      <ul>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Descripción Del Producto</div>
+              <div class="item-input-wrap">
+                <input id="txtSugerencia" type="text" name="descripcion" placeholder="Sugerencia" >
+              </div>
+            </div>
+          </div>
+        </li>      
+        <a   id="btnGuardarSugerenciaa" class="col button button-fill button-round" onclick="capturarSugerencia()" >Crear Nueva Sugerencias</a>  
+      </ul>
+        </div>
+          </div>
           <!-- -------------------perfil beneficiario------------ -->
-          <div data-name="Beneficiario" class="page ocultar" id="beneficiario">
 
-          <!-- Top Navbar -->
+
+          <div data-name="Beneficiario" class="page ocultar" id="beneficiario">
           <div class="navbar">
             <div class="navbar-inner">
               <div class="title">Beneficiario</div>
               <a onclick="logOut()"  id="btnLogOut" class="col button button-fill button-round" >LogOut</a>
+              <a onclick="interfazBuzonSugerenciasBenef()" id="btnBuzon" class="item-link list-button">Buzon de sugerencia</a>
 
             </div>
 
@@ -156,6 +175,8 @@
            </div>   
          </div>
         </div>
+
+
           <!-- -------------------Historial------------ -->
            <div class="page ocultar" id="historiAl">
              <div class="navbar">
@@ -208,7 +229,9 @@
                <div class="block">
                  <p class="segmented segmented-raised">
                    <button onclick="interfaznuevaDonacionDonador()" id="btnAgregarDonacion" class="button">Nueva donación</button>
+                   <button onclick="interfazBuzonSugerencias()" id="btnBuzon" class="button">Buzon de sugerencia</button>
                    <button onclick="logOut()" id="btnLogOut" class="button button-active">LogOut</button>
+                   
                  </p>
                </div>         
             </div>
@@ -260,18 +283,18 @@
                       
                       </div>
                       <div>
-                  <p><span data-progress="10" class="progressbar" id="demo-inline-progressbar"><span style="transform: translate3d(-90%, 0px, 0px);"></span></span></p>
+                  <p><span data-progress="5" class="progressbar" id="demo-inline-progressbar"><span style="transform: translate3d(-90%, 0px, 0px);"></span></span></p>
 
 
                   <p class="segmented segmented-raised">
-                  <a href="#" data-progress="10" class="button">3.2</a>
+                  <a href="#" data-progress="5" class="button" id="barCalificacion">3.2</a>
                   
                   </p>
                   </div>
                       
                 </div>
 
-                <h1>Pedidos Entregados</h1>
+                <h1>Donaciones Entregadas</h1>
                 <div id="cardsHistorialRecibido"></div>
                 <h1>Donaciones en proceso</h1>
                 <div id="cardsHistorialEntregado"></div>
@@ -404,6 +427,27 @@
         </div>
           </div>
 
+          <!--buzon donador-->
+
+<div class="page ocultar" id="nuevaSugerencia">
+      <div class="login-screen-title">Crear Una sugerencia</div>
+    <div class="list no-hairlines-md">
+      <ul>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+               <div class="item-title item-label">Descripción Del Producto</div>
+              <div class="item-input-wrap">
+                <input id="txtSugerencia" type="text" name="descripcion" placeholder="Sugerencia" >
+              </div>
+            </div>
+          </div>
+        </li>      
+        <a   id="btnGuardarSugerenciaa" class="col button button-fill button-round" onclick="capturarSugerencia()" >Crear Nueva Sugerencias</a>  
+      </ul>
+        </div>
+          </div>
+
           <!-- -------------------Modificar Donacion------------ -->
              
     <div class="page ocultar" id="modificarDonacionActual">
@@ -501,11 +545,6 @@
           </div>
 
 
-              
-
-
-
-
           </div>
         </div>
 
@@ -535,18 +574,18 @@
     <script type="text/javascript" src="js/framework7.bundle.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
-
-  <script src="js/Registro.js"></script>
-  <script src="js/funciones.js"></script>
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script src="js/donaciones.js"></script>
-  <script src="js/perfilBeneficiario.js"></script>
-  <script src="js/busqueda.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
+    <script src="js/Registro.js"></script>
+    <script src="js/funciones.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="js/donaciones.js"></script>
+    <script src="js/perfilBeneficiario.js"></script>
+    <script src="js/busqueda.js"></script>
+    <script src="js/sugerencias.js"></script>
 
   </body>
 </html>
